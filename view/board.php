@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="main_adversaire">
-        
+
     </div>
     <div class="plateau_adversaire">
 
