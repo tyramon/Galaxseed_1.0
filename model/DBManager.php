@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
 
+use PDO, Exception, PDOStatement;
+
 
 class DBManager
 {
@@ -116,5 +118,30 @@ class DBManager
     }
 
 
+    /**
+     * @param string $sql
+     * @param array $params
+     */
+    public function makeUpdate(string $sql, array $params = array())
+    {
+        if (!$params) {
+            $stm = $this->pdo->query($sql);
+            $stm -> execute();
 
+            if ($stm === false) {
+
+                $message = "query n'a pas marché";
+                throw new Exception($message);
+            }
+        } else {
+            $stm = $this->pdo->prepare($sql);
+
+            foreach($params as $placeholder => $variable)
+            {
+                $stm->bindValue($placeholder, $variable);
+            }
+
+            $stm->execute();
+        }
+    }
 }

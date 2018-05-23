@@ -9,24 +9,18 @@
 class HeroController
 {
 
-    public function killHero(){
-
-    }
-
-    //Recupere toutes les cartes du deck
-    public function initDeck( ){
-
-    }
-
-    // Melange les cartes
-    public function mixCards(){
-
-    }
-
-    public function receiveDamage()
+    public function initDeck( )
     {
+        //Recupere toutes les cartes du deck
+        // appeller le cardManager pour aller chercher les cartes dans la db
+        // retourne un tableau d'objet Card qui faudra affecter à l'attribut
+        // $cardsInDeck dans la class Hero
 
     }
 
-
+    public function mixCards()
+    {
+        // Melange les cartes
+        // faire un shuffle de l'array $cardsInDeck
+    }
 }

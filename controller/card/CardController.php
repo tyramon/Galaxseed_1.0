@@ -25,31 +25,6 @@ class CardController
 
     }
 
-    // la carte passe de la pioche a la main
-    public function takeCard()
-    {
 
-    }
-
-    // la carte disparais du board
-    public function discard(){
-
-    }
-
-    // le joueur joue sa carte sur le board
-    public function invoke(object $card){
-
-    }
-
-    public function selectCard(){
-        // on choisie une carte pour agir avec!
-    }
-
-    //Methode SORTS
-
-    public function castSpellShield()
-    {
-        // Transforme une carte en bouclier
-    }
 
 }
