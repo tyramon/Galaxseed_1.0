@@ -8,8 +8,6 @@
 
 class CardController
 {
-
-
     public function __construct()
     {
 
@@ -24,6 +22,4 @@ class CardController
     public function showBordCard(){
 
     }
-
-
 }
