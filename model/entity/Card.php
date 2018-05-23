@@ -39,12 +39,14 @@ class card
         $this->setId($info_card['ct_id']);
         $this->setName($info_card['ct_name']);
         $this->setHp($info_card['ct_health_point']);
-        $this->setMana($info_card['ct_cost']);
+        $this->setMana($info_card['ct_mana']);
         $this->setAttack($info_card['ct_attack']);
         $this->setShield($info_card['cg_shield']);
-        $this->setType($info_card['t_id']);
-        $this->setStatus('');
         $this->setLocation('');
+        $this->setStatus('');
+        $this->setHero('');
+        $this->setIllustration('');
+        $this->setType($info_card['t_id']);
         //DB a mettre à jour
 //        $this->setIllustration($info_card['l_id']);
     }
