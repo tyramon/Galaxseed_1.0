@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * UserManager: webuser1801
- * Date: 18/04/2018
- * Time: 14:23
- */
+declare(strict_types=1);
 
 class CardController
 {
@@ -31,7 +26,7 @@ class CardController
 
     }
 
-    // la carte disparais du board
+    // la carte disparait du board
     public function discard(){
 
     }
@@ -42,7 +37,7 @@ class CardController
     }
 
     public function selectCard(){
-        // on choisie une carte pour agir avec!
+        // on choisit une carte pour agir avec!
     }
 
     //Methode SORTS

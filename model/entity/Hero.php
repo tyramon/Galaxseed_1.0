@@ -1,11 +1,7 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * User: webuser1801
- * Date: 16/05/2018
- * Time: 10:19
- */
+
+namespace dndcompany\galaxseed\model\entity;
 
 class Hero
 {

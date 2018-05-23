@@ -12,8 +12,7 @@ define ('VIEW_FOLDER', dirname(__FILE__).'/view/' );
 spl_autoload_register(function ($class) {
 
     if(strpos($class, 'dndcompany\galaxseed\\') === 0) {
-        $cheminClass = substr($class, 20);
-        //ou 21 a verifier!!!
+        $cheminClass = substr($class, 21);
     } else {
         $cheminClass = $class;
     }

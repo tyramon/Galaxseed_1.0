@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * UserManager: webuser1801
- * Date: 16/05/2018
- * Time: 09:28
- */
+declare(strict_types=1);
 
 namespace dndcompany\galaxseed;
 require "config.php";

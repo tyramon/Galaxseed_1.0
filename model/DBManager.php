@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
 
+use PDO, PDOException, PDOStatement, Exception;
 
 class DBManager
 {

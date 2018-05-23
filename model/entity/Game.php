@@ -1,6 +1,8 @@
 <?php
 declare(strict_type=1);
 
+namespace dndcompany\galaxseed\model\entity;
+
 class Game
 {
     private $id;
@@ -15,6 +17,27 @@ class Game
     public function __construct(array $dataGameManager)
     {
         $this->hydrate($dataGameManager);
+    }
+
+    public function hydrate($data)
+    {
+        foreach ($data as $key => $val)
+        {
+            $key=str_replace('g_', '', $key);
+            $key=str_replace('hg_', '', $key);
+            $key=str_replace('u_', '', $key);
+
+            $method = 'set'.ucfirst($key);
+
+            if (method_exists($this, $method))
+            {
+                if(is_numeric($val))
+                {
+                    $val=(int)$val;
+                }
+                $this->$method($val);
+            }
+        }
     }
 
     /**
@@ -129,10 +152,7 @@ class Game
         $this->manaPool = $manaPool;
     }
 
-    public function hydrate()
-    {
 
-    }
 
 
 }
