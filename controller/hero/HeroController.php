@@ -23,10 +23,7 @@ class HeroController
 
     }
 
-    public function receiveDamage()
-    {
 
-    }
 
 
 }

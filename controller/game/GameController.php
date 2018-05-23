@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
+
 namespace dndcompany\galaxseed\controller\game ;
+
 /**
  * Created by PhpStorm.
  * UserManager: webuser1801

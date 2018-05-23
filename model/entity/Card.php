@@ -1,5 +1,10 @@
 <?php
 declare(strict_types=1);
+
+namespace dndcompany\galaxseed\model\entity;
+
+use dndcompany\galaxseed\model\CardManager;
+
 /**
  * Created by PhpStorm.
  * User: webuser1801
@@ -9,8 +14,6 @@ declare(strict_types=1);
 
 class card
 {
-
-
     private $id;
     private $name;
     private $hp;
@@ -21,13 +24,62 @@ class card
     private $status;
     private $hero;
     private $illustration;
+    private $type;
 
 
-    public function __construct(array $dataCardManager)
+    public function __construct(string $card_name)
     {
-        $this->hydrate($dataCardManager);
+        $this->hydrate($card_name);
     }
 
+    public function hydrate(string $card_name){
+        $card_manager = new CardManager();
+        $info_card = $card_manager->getCard($card_name);
+
+        $this->setId($info_card['ct_id']);
+        $this->setName($info_card['ct_name']);
+        $this->setHp($info_card['ct_health_point']);
+        $this->setMana($info_card['ct_cost']);
+        $this->setAttack($info_card['ct_attack']);
+        $this->setShield($info_card['cg_shield']);
+        $this->setType($info_card['t_id']);
+        $this->setStatus('');
+        $this->setLocation('');
+        //DB a mettre à jour
+//        $this->setIllustration($info_card['l_id']);
+    }
+
+    // Attaquer un joueur
+    public function attack(object $cible, objet $attaquant){
+        $degats = $this->getAttack();
+        $cible->receiveDamage($degats, $attaquant);
+
+    }
+
+    // la carte recoit des degats
+    public function receiveDamage(int $degat, object $attaquant){
+        $this->setHp($this->getHp() - $degat);
+        if($this->getHp() <= 0){
+            //defauser la carte
+            $this->setLocation('discard');
+        }
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type): void
+    {
+        $this->type = $type;
+    }
 
     /**
      * @return mixed
@@ -189,10 +241,7 @@ class card
         $this->illustration = $illustration;
     }
 
-    public function hydrate()
-    {
 
-    }
 
 
 }

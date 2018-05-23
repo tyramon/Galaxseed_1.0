@@ -10,6 +10,12 @@ namespace dndcompany\galaxseed\model;
 
 class CardManager
 {
+
+    public function getCard(string $card_name){
+
+
+    }
+
     public function getDeckPlayer(int $id_player, int $id_hero) : array
     {
 

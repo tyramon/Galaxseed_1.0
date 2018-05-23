@@ -12,44 +12,18 @@ class CardController
 
     public function __construct()
     {
-    }
-
-
-    // Attaquer un joueur
-    public function attack(object $cible, int $degat){
 
     }
 
-    // la carte recoit des degats
-    public function receiveDamage(int $degat, object $attaquant){
+    //appel l'affichage des cartes dans la main du joueur
+    public function showHandCard(){
 
     }
 
-    // la carte passe de la pioche a la main
-    public function takeCard()
-    {
+    //appel l'affichage des cartes sur le plateau du joueur
+    public function showBordCard(){
 
     }
 
-    // la carte disparais du board
-    public function discard(){
-
-    }
-
-    // le joueur joue sa carte sur le board
-    public function invoke(object $card){
-
-    }
-
-    public function selectCard(){
-        // on choisie une carte pour agir avec!
-    }
-
-    //Methode SORTS
-
-    public function castSpellShield()
-    {
-        // Transforme une carte en bouclier
-    }
 
 }

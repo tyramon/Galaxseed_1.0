@@ -22,6 +22,10 @@ class Hero
         $this->hydrate($dataHeroManager);
     }
 
+    public function receiveDamage(){
+
+    }
+
     /**
      * @return mixed
      */
