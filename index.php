@@ -4,6 +4,8 @@ declare(strict_types=1);
 namespace dndcompany\galaxseed;
 require "config.php";
 
+
+//teste
 //tour 1:
 // plateau pres pour le premier tour du joueur 1
 // les cartes sont distribuees

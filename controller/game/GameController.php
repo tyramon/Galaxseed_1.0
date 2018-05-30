@@ -1,11 +1,22 @@
 <?php
 declare(strict_types=1);
 
+<<<<<<< HEAD
 namespace dndcompany\galaxseed\controller\game;
 
 use dndcompany\galaxseed\model\entity\Hero;
 use dndcompany\galaxseed\model\entity\Game;
 
+=======
+namespace dndcompany\galaxseed\controller\game ;
+
+/**
+ * Created by PhpStorm.
+ * UserManager: webuser1801
+ * Date: 18/04/2018
+ * Time: 14:18
+ */
+>>>>>>> Raphael
 
 class GameController
 {
