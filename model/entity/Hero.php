@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php declare(strict_types=1);
 /**
  * Created by PhpStorm.
@@ -10,6 +11,12 @@ namespace dndcompany\galaxseed\model\entity;
 // Le hero sert aussi de deck manager, c'est lui a les cartes et leurs emplacements. selon la location de la carte
 // (dans la main, sur le plateau, dans la pioche ou dans la défausse) ou met la carte dans le tableau correspondant
 
+=======
+<?php
+declare(strict_types=1);
+
+namespace dndcompany\galaxseed\model\entity;
+>>>>>>> Celine
 
 class Hero
 {

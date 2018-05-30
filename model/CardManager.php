@@ -1,11 +1,6 @@
 <?php
 declare(strict_types=1);
-/**
- * Created by PhpStorm.
- * UserManager: webuser1801
- * Date: 18/04/2018
- * Time: 14:23
- */
+
 namespace dndcompany\galaxseed\model;
 
 class CardManager

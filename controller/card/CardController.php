@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * UserManager: webuser1801
- * Date: 18/04/2018
- * Time: 14:23
- */
+declare(strict_types=1);
 
 class CardController
 {
@@ -23,8 +18,36 @@ class CardController
     public function showBordCard(){
 
     }
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> Seb
+=======
+<<<<<<< HEAD
+
+    // la carte disparait du board
+    public function discard(){
+
+    }
+
+    // le joueur joue sa carte sur le board
+    public function invoke(object $card){
+
+    }
+
+    public function selectCard(){
+        // on choisit une carte pour agir avec!
+    }
+
+    //Methode SORTS
+
+    public function castSpellShield()
+    {
+        // Transforme une carte en bouclier
+    }
+
+=======
+>>>>>>> Raphael
+>>>>>>> Celine
 }

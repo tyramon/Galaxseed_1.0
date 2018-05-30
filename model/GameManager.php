@@ -5,6 +5,12 @@ namespace dndcompany\galaxseed\model;
 
 class GameManager
 {
+    public function allInfoGameById(int $id) : array
+    {
+        $data=DBManager::getInstance()->makeSelect('SELECT * FROM game WHERE id=:id', $id);
+        return $data;
+    }
+
     public function initGameRecord()
     {
         // intialiation de la partie dans la db

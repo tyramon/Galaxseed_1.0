@@ -3,8 +3,12 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
 
+<<<<<<< HEAD
 use PDO, Exception, PDOStatement;
 
+=======
+use PDO, PDOException, PDOStatement, Exception;
+>>>>>>> Celine
 
 class DBManager
 {
