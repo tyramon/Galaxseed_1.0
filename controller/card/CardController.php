@@ -18,8 +18,13 @@ class CardController
 
     }
 
+<<<<<<< HEAD
     //appel l'affichage des cartes sur le plateau du joueur
     public function showBordCard(){
 
     }
+=======
+
+
+>>>>>>> Seb
 }

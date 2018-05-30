@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="22da2747-44a6-4859-b9e2-7fe2acc7ffee" name="Default" comment="la base">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+    <list default="true" id="22da2747-44a6-4859-b9e2-7fe2acc7ffee" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/hero/HeroController.php" afterPath="$PROJECT_DIR$/controller/hero/HeroController.php" />
+>>>>>>> Seb
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -13,6 +18,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="board.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/board.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -28,6 +34,13 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
               <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+=======
+      <file leaf-file-name="HeroController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/controller/hero/HeroController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+>>>>>>> Seb
               <folding />
             </state>
           </provider>
@@ -36,6 +49,7 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="76">
               <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="21" />
               <folding>
@@ -50,11 +64,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
               <caret line="20" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="1" />
+=======
+            <state relative-caret-position="306">
+              <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+>>>>>>> Seb
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="CardController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controller/card/CardController.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -95,26 +114,53 @@
               <folding>
                 <marker date="1522416600521" expanded="true" signature="482:500" ph="select * fro... nain" />
               </folding>
+=======
+      <file leaf-file-name="HeroManager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/HeroManager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="736">
+              <caret line="45" column="5" lean-forward="false" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+              <folding />
+>>>>>>> Seb
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
         <entry file="file://D:/laurent/05 static singleton/config.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+      <file leaf-file-name="DBManager.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/DBManager.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="770">
+              <caret line="146" column="1" lean-forward="false" selection-start-line="146" selection-start-column="1" selection-end-line="146" selection-end-column="1" />
+>>>>>>> Seb
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="PDOManager.php" pinned="false" current-in-tab="false">
         <entry file="file://D:/laurent/05 static singleton/PDOManager.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="114">
               <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
               <folding />
+=======
+      <file leaf-file-name="Hero.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/entity/Hero.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="124">
+              <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+              <folding>
+                <element signature="e#31#118#0#PHP" expanded="false" />
+              </folding>
+>>>>>>> Seb
             </state>
           </provider>
         </entry>
@@ -130,24 +176,33 @@
         <option value="$PROJECT_DIR$/config.php" />
         <option value="$PROJECT_DIR$/models/CardController.php" />
         <option value="$PROJECT_DIR$/models/CardManager.php" />
-        <option value="$PROJECT_DIR$/model/DBManager.php" />
         <option value="$PROJECT_DIR$/model/entity/Match.php" />
         <option value="$PROJECT_DIR$/model/MatchManager.php" />
         <option value="$PROJECT_DIR$/model/GameManager.php" />
-        <option value="$PROJECT_DIR$/model/HeroManager.php" />
         <option value="$PROJECT_DIR$/model/CardManager.php" />
         <option value="$PROJECT_DIR$/model/UserManager.php" />
         <option value="$PROJECT_DIR$/model/entity/Game.php" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/model/entity/Hero.php" />
+=======
+        <option value="$PROJECT_DIR$/model/entity/Card.php" />
+>>>>>>> Seb
         <option value="$PROJECT_DIR$/model/entity/User.php" />
         <option value="$PROJECT_DIR$/controller/match/MatchController.php" />
-        <option value="$PROJECT_DIR$/controller/hero/HeroController.php" />
         <option value="$PROJECT_DIR$/controller/game/GameController.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/view/board.php" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/controller/card/CardController.php" />
         <option value="$PROJECT_DIR$/model/entity/Card.php" />
+=======
+        <option value="$PROJECT_DIR$/model/DBManager.php" />
+        <option value="$PROJECT_DIR$/controller/card/CardController.php" />
+        <option value="$PROJECT_DIR$/model/HeroManager.php" />
+        <option value="$PROJECT_DIR$/model/entity/Hero.php" />
+        <option value="$PROJECT_DIR$/controller/hero/HeroController.php" />
+>>>>>>> Seb
       </list>
     </option>
   </component>
@@ -159,10 +214,17 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
+<<<<<<< HEAD
     <option name="x" value="1672" />
     <option name="y" value="-8" />
     <option name="width" value="1456" />
     <option name="height" value="886" />
+=======
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+>>>>>>> Seb
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -180,27 +242,26 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
-              <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="card" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
@@ -209,30 +270,57 @@
             <path>
               <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> Seb
               <item name="controller" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="hero" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> Seb
+              <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="entity" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+<<<<<<< HEAD
               <item name="1.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="model" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="entity" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="Galaxseed_1.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Galaxseed_1.0" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="view" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> Seb
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="D:/formation/Nain PDO" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> Seb
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -275,6 +363,7 @@
       <option name="presentableId" value="Default" />
       <updated>1526455456307</updated>
       <workItem from="1526455457533" duration="12000" />
+<<<<<<< HEAD
       <workItem from="1526455665654" duration="16990000" />
       <workItem from="1526482441190" duration="324000" />
       <workItem from="1526541025324" duration="234000" />
@@ -288,23 +377,40 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1526482590630</updated>
+=======
+      <workItem from="1526455665654" duration="14651000" />
+      <workItem from="1527062245434" duration="11381000" />
+>>>>>>> Seb
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="21538000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1672" y="-8" width="1456" height="886" extended-state="6" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14469914" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+    <option name="totallyTimeSpent" value="26044000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15031983" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Seb
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+<<<<<<< HEAD
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> Seb
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -314,6 +420,10 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+<<<<<<< HEAD
+=======
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+>>>>>>> Seb
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3299566" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -355,6 +465,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/view/board.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -367,10 +478,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+=======
+    <entry file="file://$PROJECT_DIR$/controller/game/GameController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#80#174#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -402,6 +530,8 @@
       </provider>
     </entry>
     <entry file="file://D:/laurent/05 static singleton/config.php">
+=======
+    <entry file="file://$PROJECT_DIR$/controller/hero/view/boardHero.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -409,30 +539,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/laurent/05 static singleton/PDOManager.php">
+    <entry file="file://$PROJECT_DIR$/controller/card/view/cardView.php">
+>>>>>>> Seb
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
+    <entry file="file://D:/laurent/05 static singleton/PDOManager.php">
+=======
+    <entry file="file://$PROJECT_DIR$/model/entity/Game.php">
+>>>>>>> Seb
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="17" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/model/DBManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="46" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="1" />
+=======
+    <entry file="file://$PROJECT_DIR$/controller/hero/HeroController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/view/board.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/controller/card/CardController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="44" column="47" lean-forward="false" selection-start-line="44" selection-start-column="47" selection-end-line="44" selection-end-column="47" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.gitignore" />
     <entry file="file://$PROJECT_DIR$/config.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -446,10 +604,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="20" column="46" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="119" selection-end-column="1" />
+=======
+    <entry file="file://$PROJECT_DIR$/view/board.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Perso/master/galax_compte.php" />
+    <entry file="file:////serveur-pao-web/WEBDEVELOPMENT/2018-01/Formation/cours/08_-_Programmation_orientee_objet_(OOP)/_Live/laurent/mvc/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/mvc/config.php" />
+    <entry file="file://$PROJECT_DIR$/model/DeckManager.php" />
+    <entry file="file://$PROJECT_DIR$/../connection/class/DBManager.php" />
     <entry file="file://$PROJECT_DIR$/model/CardManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -543,11 +718,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="18" column="28" lean-forward="false" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+<<<<<<< HEAD
+=======
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/entity/Hero.php">
+    <entry file="file://$PROJECT_DIR$/controller/match/MatchController.php" />
+    <entry file="file://$PROJECT_DIR$/controller/game/GameController.php">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="e#80#174#0#PHP" expanded="false" />
+          </folding>
+>>>>>>> Seb
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view/board.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="418">
           <caret line="22" column="5" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
         </state>
@@ -558,13 +749,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/entity/Game.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="17" column="5" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="17" selection-end-column="5" />
+=======
+        <state relative-caret-position="204">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -572,6 +760,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -579,18 +768,100 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> Seb
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entity/Game.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="5" lean-forward="false" selection-start-line="14" selection-start-column="3" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../OOP/MVC/nains_mvc/model/entities/Nain.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="595">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="26" selection-start-column="4" selection-end-line="40" selection-end-column="5" />
+          <folding />
+>>>>>>> Seb
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../OOP/MVC/forum/model/entities/Message.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state relative-caret-position="1309">
+          <caret line="128" column="13" lean-forward="true" selection-start-line="128" selection-start-column="13" selection-end-line="128" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" lean-forward="false" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../OOP/MVC/forum/model/coreModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1207">
+          <caret line="71" column="5" lean-forward="true" selection-start-line="71" selection-start-column="5" selection-end-line="71" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../OOP/MVC/nains_mvc/model/DBManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="38" column="4" lean-forward="true" selection-start-line="38" selection-start-column="4" selection-end-line="59" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/entity/Card.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="3" lean-forward="false" selection-start-line="25" selection-start-column="3" selection-end-line="28" selection-end-column="5" />
+          <folding />
+>>>>>>> Seb
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/HeroManager.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="19">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="24" />
+=======
+        <state relative-caret-position="425">
+          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding />
+>>>>>>> Seb
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/game/GameController.php">
+    <entry file="file://$PROJECT_DIR$/model/entity/Hero.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="456">
           <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
         </state>
@@ -618,10 +889,17 @@
           <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="21" />
           <folding>
             <marker date="1527079177164" expanded="true" signature="157:544" ph="//..." />
+=======
+        <state relative-caret-position="124">
+          <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
+          <folding>
+            <element signature="e#31#118#0#PHP" expanded="false" />
+>>>>>>> Seb
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/model/CardManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -646,10 +924,17 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/model/HeroManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="45" column="5" lean-forward="false" selection-start-line="45" selection-start-column="5" selection-end-line="45" selection-end-column="5" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://D:/laurent/05 static singleton/PDOManager.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
@@ -678,14 +963,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+=======
+    <entry file="file://$PROJECT_DIR$/model/DBManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="770">
+          <caret line="146" column="1" lean-forward="false" selection-start-line="146" selection-start-column="1" selection-end-line="146" selection-end-column="1" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/model/entity/Card.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="912">
           <caret line="48" column="43" lean-forward="false" selection-start-line="48" selection-start-column="43" selection-end-line="48" selection-end-column="43" />
+=======
+    <entry file="file://$PROJECT_DIR$/controller/hero/HeroController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+>>>>>>> Seb
           <folding />
         </state>
       </provider>
