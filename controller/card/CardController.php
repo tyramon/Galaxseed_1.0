@@ -17,7 +17,7 @@ class CardController
     public function showBordCard(){
 
     }
-<<<<<<< HEAD
+
 
     // la carte disparait du board
     public function discard(){
@@ -40,6 +40,4 @@ class CardController
         // Transforme une carte en bouclier
     }
 
-=======
->>>>>>> Raphael
 }

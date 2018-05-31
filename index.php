@@ -2,8 +2,11 @@
 declare(strict_types=1);
 
 namespace dndcompany\galaxseed;
-require "config.php";
+use dndcompany\galaxseed\controller\game\GameController;
+use dndcompany\galaxseed\controller\hero\HeroController;
+use dndcompany\galaxseed\model\entity\Hero;
 
+require "config.php";
 
 //teste
 //tour 1:
@@ -18,4 +21,36 @@ require "config.php";
 // le mana augmante de 1
 // on pioche une carte en debut du tour du joueur
 
-require "board.php";
+$html='';
+
+
+
+if (!isset($hero1))
+{
+    $gameController= new GameController();
+    $hero1=$gameController->initGame(1);
+    $hero2=$gameController->initGame(2);
+    $hero1->pickCardInDeck();
+    // Modifier le setter pour setter la localisation des cartes
+//    Sauvegarder dans card_game
+    var_dump($hero1);
+    $tabHand=$hero1->getCardsInHand();
+}
+
+if (isset($_GET['action']) && $_GET['action'] === 'invoke' && isset($_GET['card']))
+{
+    $heroController= new HeroController();
+    $hero1=$gameController->getHero(1);
+    $html=$heroController->viewHand($tabHand);
+    $heroController->invocation((int)$_GET['card'], $hero1);
+    $hero1->checkInvoke((int)$_GET['card']);
+
+var_dump($hero1);
+}
+
+$heroController= new HeroController();
+$html=$heroController->viewHand($tabHand);
+
+
+
+require "view/board.php";

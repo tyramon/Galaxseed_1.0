@@ -19,7 +19,7 @@
 
     </div>
     <div class="main_joueur">
-
+        <?php echo $html;?>
     </div>
 </body>
 </html>

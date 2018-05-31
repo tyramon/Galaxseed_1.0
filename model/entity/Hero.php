@@ -5,77 +5,167 @@ namespace dndcompany\galaxseed\model\entity;
 
 class Hero
 {
+    const HERO_HIT = 1;
+    const HERO_DEAD = 2;
+    protected $id;
+    protected $healthPoints;
+    protected $manaCount;
+    protected $name;
+    protected $illustration;
+//    protected $heroTemplateId;
+//    protected $gameId;
+    protected $cardsInHand; // array -> toutes les cartes (objets) en main
+    protected $cardsInDeck; // array -> toutes les cartes dans la pioche
+    protected $cardsOnBoard; // array -> toutes les cartes sur le plateau
+    protected $cardsInDiscard; // array -> toutes les cartes de la défausse
 
-    private $_id;
-    private $_hp;
-    private $_mana_pool;
-    private $_name;
-    private $_illustration;
-    private $_card_table;
 
     public function __construct(array $dataHeroManager)
     {
         $this->hydrate($dataHeroManager);
     }
 
-    public function receiveDamage(){
 
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getId()
+    public function hydrate(array $data): void
     {
-        return $this->_id;
+        foreach ($data as $key => $val)
+        {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method))
+            {
+                if (is_numeric($val))
+                {
+                    $val = (int)$val;
+                }
+                $this->$method($val);
+            }
+        }
     }
 
+    //
+    //
+    //        METHODS
+    //
+    //
+    /**
+     * @param int $force
+     * @return int
+     */
+
+    public function receiveDamage(int $force): int
+    {
+        $health = $this->getHealthPoints() - $force;
+        $this->setHealthPoints($health);
+        if ($this->getHealthPoints() <= 0) {
+            return self::HERO_DEAD;
+        }
+        return self::HERO_HIT;
+    }
+
+    public function pickCardInDeck() // method formerly known as takeCard()
+    {
+        // choisir une carte dans la pioche
+        // la carte choisie passe de la pioche a la main ( change card $location from l_id=1(deck) to l_id=2(hand)
+
+        $deck=$this->getCardsInDeck();
+        $tailleTab=count($deck);
+
+        if ($tailleTab > 0)
+        {
+            $cards[]=$deck[$tailleTab-1];
+            $this->setCardsInHand($cards);
+            unset($deck[$tailleTab-1]);
+            $this->setCardsInDeck($deck);
+        }
+    }
+
+    public function checkInvoke(int $id)
+    {
+        $tabHand = $this->getCardsInHand();
+
+        foreach ($tabHand as $key => $val)
+        {
+            if ((int)$val->getId() == $id)
+            {
+                $mana = (int)$val->getMana();
+
+                if ($this->getManaCount() >= $mana)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public function discard()
+    {
+        // la carte disparais du board
+        // change card $location to 'discard' (l_id=4)
+    }
+
+    public function playCard(int $cardId) :void   // method formerly known as invoke()
+    {
+        // le joueur joue sa carte sur le board
+        // Change card $location to 'board' (l_id=3)
+
+        $hand=$this->getCardsInHand();
+
+
+        foreach ($hand as $key => $val)
+        {
+            if ((int)$val->getId() == $cardId)
+            {
+                $this->setCardsOnBoard($val);
+                unset($hand[$key]);
+            }
+        }
+
+        $this->setCardsInHand($hand);
+    }
+
+    public function selectCardToPlay()
+    {  // selectCard
+        // on choisie une carte pour agir avec!
+        // pouvoir choisir une des cartes qui sont dans la main (passer $cardsInHands en param et l'id
+        // de la carte qu'on veut choisir)
+    }
+
+    public function castSpellShield()  // optional method.
+    {
+        // Transforme une carte en bouclier
+        // besoin de l'id de la carte à modifier en param
+        //
+    }
+
+
+    //
+    //
+    //        SETTERS
+    //
+    //
     /**
      * @param mixed $id
      */
     public function setId($id)
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @param mixed $healthPoints
      */
-    public function getHp()
+    public function setHealthPoints($healthPoints)
     {
-        return $this->_hp;
+        $this->healthPoints = $healthPoints;
     }
 
     /**
-     * @param mixed $hp
+     * @param mixed $manaCount
      */
-    public function setHp($hp)
+    public function setManaCount($manaCount)
     {
-        $this->_hp = $hp;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getManaPool()
-    {
-        return $this->_mana_pool;
-    }
-
-    /**
-     * @param mixed $mana_pool
-     */
-    public function setManaPool($mana_pool)
-    {
-        $this->_mana_pool = $mana_pool;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->_name;
+        $this->manaCount = $manaCount;
     }
 
     /**
@@ -83,15 +173,7 @@ class Hero
      */
     public function setName($name)
     {
-        $this->_name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIllustration()
-    {
-        return $this->_illustration;
+        $this->name = $name;
     }
 
     /**
@@ -99,27 +181,147 @@ class Hero
      */
     public function setIllustration($illustration)
     {
-        $this->_illustration = $illustration;
+        $this->illustration = $illustration;
+    }
+
+    /**
+     * @param mixed $heroTemplateId
+     */
+    public function setHeroTemplateId($heroTemplateId)
+    {
+        $this->heroTemplateId = $heroTemplateId;
+    }
+
+    /**
+     * @param mixed $gameId
+     */
+    public function setGameId($gameId)
+    {
+        $this->gameId = $gameId;
+    }
+
+    /**
+     * @param mixed $cardsInHand
+     */
+    public function setCardsInHand($cardsInHand)
+    {
+        $this->cardsInHand = $cardsInHand;
+    }
+
+    /**
+     * @param mixed $cardsInDeck
+     */
+    public function setCardsInDeck($cardsInDeck)
+    {
+        $this->cardsInDeck = $cardsInDeck;
+    }
+
+    /**
+     * @param mixed $cardsOnBoard
+     */
+    public function setCardsOnBoard($cardsOnBoard)
+    {
+        $this->cardsOnBoard = $cardsOnBoard;
+    }
+
+    /**
+     * @param mixed $cardsInDiscard
+     */
+    public function setCardsInDiscard($cardsInDiscard)
+    {
+        $this->cardsInDiscard = $cardsInDiscard;
+    }
+    //
+    //
+    //        GETTERS
+    //
+    //
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
      * @return mixed
      */
-    public function getCardTable()
+    public function getHealthPoints()
     {
-        return $this->_card_table;
+        return $this->healthPoints;
     }
 
     /**
-     * @param mixed $card_table
+     * @return mixed
      */
-    public function setCardTable($card_table): void
+    public function getManaCount()
     {
-        $this->_card_table = $card_table;
+        return $this->manaCount;
     }
 
-    public function hydrate ()
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
-
+        return $this->name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIllustration()
+    {
+        return $this->illustration;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeroTemplateId()
+    {
+        return $this->heroTemplateId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameId()
+    {
+        return $this->gameId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardsInHand()
+    {
+        return $this->cardsInHand;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardsInDeck()
+    {
+        return $this->cardsInDeck;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardsOnBoard()
+    {
+        return $this->cardsOnBoard;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardsInDiscard()
+    {
+        return $this->cardsInDiscard;
+    }
+
 }

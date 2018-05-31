@@ -6,7 +6,7 @@ namespace dndcompany\galaxseed\model;
 class CardManager
 {
 
-    public function getCard(string $card_name){
+    public function getCard(int $id){
 
 
     }
