@@ -19,12 +19,16 @@ class CardController
 
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
 >>>>>>> Seb
 =======
 <<<<<<< HEAD
+=======
+
+>>>>>>> Celine
 
     // la carte disparait du board
     public function discard(){
@@ -47,7 +51,10 @@ class CardController
         // Transforme une carte en bouclier
     }
 
+<<<<<<< HEAD
 =======
 >>>>>>> Raphael
+>>>>>>> Celine
+=======
 >>>>>>> Celine
 }

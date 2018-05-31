@@ -27,28 +27,28 @@ class card
     private $type;
 
 
-    public function __construct(string $card_name)
+    public function __construct(array $cardData)
     {
-        $this->hydrate($card_name);
+        $this->hydrate($cardData);
     }
 
-    public function hydrate(string $card_name){
-        $card_manager = new CardManager();
-        $info_card = $card_manager->getCard($card_name);
+    public function hydrate(array $cardData){
+//        $card_manager = new CardManager();
+//        $cardData = $card_manager->getCard($card_name);
 
-        $this->setId($info_card['ct_id']);
-        $this->setName($info_card['ct_name']);
-        $this->setHp($info_card['ct_health_point']);
-        $this->setMana($info_card['ct_mana']);
-        $this->setAttack($info_card['ct_attack']);
-        $this->setShield($info_card['cg_shield']);
+        $this->setId($cardData['ct_id']);
+        $this->setName($cardData['ct_name']);
+        $this->setHp($cardData['ct_health_point']);
+        $this->setMana($cardData['ct_mana']);
+        $this->setAttack($cardData['ct_attack']);
+        $this->setShield($cardData['ct_shield']);
         $this->setLocation('');
         $this->setStatus('');
         $this->setHero('');
         $this->setIllustration('');
-        $this->setType($info_card['t_id']);
+        $this->setType($cardData['t_id']);
         //DB a mettre à jour
-//        $this->setIllustration($info_card['l_id']);
+//        $this->setIllustration($cardData['l_id']);
     }
 
     // Attaquer un joueur
