@@ -3,89 +3,63 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\controller\hero;
 
+use dndcompany\galaxseed\model\CardManager;
 use \dndcompany\galaxseed\model\HeroManager;
 use \dndcompany\galaxseed\model\entity\Hero;
+use \dndcompany\galaxseed\model\entity\Card;
 
 class HeroController
 {
-
-<<<<<<< HEAD
-    public function initDeck( )
-    {
-        //Recupere toutes les cartes du deck
-        // appeller le cardManager pour aller chercher les cartes dans la db
-        // retourne un tableau d'objet Card qui faudra affecter à l'attribut
-        // $cardsInDeck dans la class Hero
-
-    }
-
-<<<<<<< HEAD
-
-=======
     public function mixCards()
     {
         // Melange les cartes
         // faire un shuffle de l'array $cardsInDeck
     }
-}
->>>>>>> Seb
-=======
+
     public function killHero()
     {
 
     }
 
     //Recupere toutes les cartes du deck et les mélange
-    public function initDeck(int $id) : array
+    public function initDeck(int $id): array
     {
-        $heroManager= new HeroManager();
-        $deck=$heroManager->GetDeck($id);
-        $deck=shuffle($deck);
+        $heroManager = new HeroManager();
+        $deck = $heroManager->GetDeck($id);
+        $deck = shuffle($deck);
 
         return $deck;
     }
 
-    public function viewHand(array $tabHand) : string
-    {
-        $html='';
-        foreach ($tabHand as $card)
-        {
-            $html.='<div>'.$card->getName(). '<br/> mana : '. $card->getMana() . '<br/> attaque : ' . $card->getAttack().'
-                        <form method="get" action=""> 
-                            <input type="hidden" name="action" value="invoke"/>
-                            <input type="hidden" name="card" value="'.$card->getId().'"/>
-                            <input type="submit" value="invoquer"/>
-                        </form>
-                    </div>';
 
-        }
-        return $html;
+
+    public function viewHand(int $idHero): array
+    {
+        $heroManager= new heroManager;
+        $cardHand=$heroManager->getHand($idHero);
+
+        return $cardHand;
     }
 
     public function invocation(int $cardId, Hero $hero)
     {
+        $cardManager=new CardManager();
+        $card=new Card($cardManager->getCard($cardId));
+        $result = $hero->checkInvoke($card, $hero);
 
-        $result = $hero->checkInvoke($cardId);
-
-        if ($result == true)
-        {
-            $hero->playCard($cardId);
+        if ($result == true) {
+            $hero->playCard($card, $hero);
         } else {
             echo 'Invocation impossible : mana insuffisant';
         }
-
-
     }
 
-    public function viewCardBoard()
+    public function viewCardBoard(int $idHero)
     {
+        $heroManager= new heroManager;
+        $cardBoard=$heroManager->getBoard($idHero);
 
+        return $cardBoard;
     }
 
-
-
->>>>>>> Celine
-
-
-
-// test push 
+}

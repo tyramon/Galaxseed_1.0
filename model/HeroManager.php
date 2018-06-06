@@ -2,8 +2,9 @@
 declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
-<<<<<<< HEAD
+
 use dndcompany\galaxseed\model\entity\Hero;
+use dndcompany\galaxseed\model\entity\Card;
 
 /**1
  * Created by PhpStorm.
@@ -27,13 +28,9 @@ class HeroManager
         $data = DBManager::getInstance()->makeSelect($sql);
 
         return new Hero($data[0]);
+    }
 
-=======
 
-use dndcompany\galaxseed\model\entity\Card;
-
-class HeroManager
-{
     public function heroDataTemplate($id)
     {
         // recuperation des infos du hero
@@ -46,38 +43,24 @@ class HeroManager
     public function heroDataGame($id)
     {
         // recuperation des infos du hero
-        $sql='SELECT hg_id AS id, hg_name AS name, hg_health_point AS healthPoints, hg_mana_count AS manaCount, hg_board AS board, ih_id AS illustration FROM hero_game WHERE hg_id=:id';
+        $sql='SELECT hg_id AS id, hg_name AS name, hg_health_point AS healthPoints, hg_mana_count AS manaCount, hg_board AS board FROM hero_game WHERE hg_id=:id';
         $dataHero=DBManager::getInstance()->makeSelect($sql, ['id'=>$id]);
 
         return $dataHero[0];
->>>>>>> Celine
+        //index 0 pour retourner 1 tableau simple pour l'hydratation
     }
 
-    /**
-     * Updates the Hero information after each turn
-     * @param array $newStats
-     */
-    public function updateHeroGame(Hero $heroId) : void         // on lui passe l'objet hero avec les nouvelles stats pour les enregistrer en db
+    public function updateHeroGame(int $idHero, int $manaHero) : void         // on lui passe l'objet hero avec les nouvelles stats pour les enregistrer en db
     {
-<<<<<<< HEAD
-        $sql = 'faire le update';
-=======
-        // mise a jour des stats du hero
-
-    }
->>>>>>> Celine
-
-        DBManager::getInstance()->makeUpdate($sql);
+        $sql='UPDATE hero_game SET hg_mana_count=:mana WHERE hg_id=:idHero';
+        DBManager::getInstance()->makeStatement($sql, ['idHero'=> $idHero, 'mana' => $manaHero]);
     }
 
-<<<<<<< HEAD
-    public function killHero(int $id)
+
+    public function GetDeck(int $idHero) : array
     {
-=======
-    public function GetDeck(int $id) : array
-    {
-        $sql='SELECT * FROM card_template WHERE ht_id=:id';
-        $data=DBManager::getInstance()->makeSelect($sql,['id'=>$id]);
+        $sql='SELECT * FROM card_game1 WHERE ht_id=:id AND l_id=1';
+        $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
 
         $deck=array();
         foreach ($data as $card)
@@ -89,7 +72,41 @@ class HeroManager
 
         return $deck;
     }
->>>>>>> Celine
+
+    public function getHand(int $idHero) : array
+    {
+        $sql='SELECT * FROM card_game1 WHERE ht_id=:id AND l_id=2';
+        $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
+
+        $hand=array();
+        foreach ($data as $card)
+        {
+            $hand[]=new Card($card);
+        }
+        return $hand;
+    }
+
+    public function getBoard(int $idHero) : array
+    {
+        $sql='SELECT ct_id AS id, ct_name AS name, ct_health_point AS hp, ct_attack AS attack, ct_mana AS mana, ct_shield AS shield, t_id AS type, ct_description AS description, ht_id AS hero, s_id AS status, ic_id AS illustration, l_id AS location FROM card_game1 WHERE ht_id=:id AND l_id=3';
+        $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
+
+        $board=array();
+        foreach ($data as $card)
+        {
+            $board[]=new Card($card);
+        }
+        return $board;
+    }
+
+
+    public function initCardGame()
+    {
+        //Creation d'une table copie de card-template
+//        DBManager::getInstance()->getPdo()->query('CREATE TABLE card_game1 LIKE card_template');
+
+        DBManager::getInstance()->getPdo()->query('DELETE FROM card_game1');
+        DBManager::getInstance()->getPdo()->query('INSERT INTO card_game1 SELECT * FROM card_template');
 
     }
 

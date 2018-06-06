@@ -1,5 +1,5 @@
 <?php
-declare(strict_type=1);
+declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
 
@@ -26,6 +26,15 @@ class GameManager
         // (a voir)
     }
 
+
+    public function initHeroGame()
+    {
+        //Creation d'une table copie de card-template
+//        DBManager::getInstance()->getPdo()->query('CREATE TABLE card_game1 LIKE card_template');
+
+        DBManager::getInstance()->getPdo()->query('DELETE FROM hero_game');
+        DBManager::getInstance()->getPdo()->query('INSERT INTO hero_game SELECT * FROM hero_template');
+    }
 
 
 

@@ -17,9 +17,33 @@
     </div>
     <div class="plateau_joueur">
 
+        <?php
+        foreach ($cardBoard as $card) {
+            echo '<div>' . $card->getName() . '<br/> mana : ' . $card->getMana() . '<br/> attaque : ' . $card->getAttack() . '
+                     <form method="get" action="">
+                          <input type="hidden" name="action" value="invoke"/>
+                          <input type="hidden" name="card" value="' . $card->getId() . '"/>
+                          <input type="submit" value="invoquer"/>
+                     </form>
+                 </div>';
+        }
+        ?>
+
+
     </div>
     <div class="main_joueur">
-        <?php echo $html;?>
+
+        <?php
+        foreach ($cardHand as $card) {
+            echo '<div>' . $card->getName() . '<br/> mana : ' . $card->getMana() . '<br/> attaque : ' . $card->getAttack() . '
+                     <form method="get" action="">
+                          <input type="hidden" name="action" value="invoke"/>
+                          <input type="hidden" name="card" value="' . $card->getId() . '"/>
+                          <input type="submit" value="invoquer"/>
+                     </form>
+                 </div>';
+        }
+        ?>
     </div>
 </body>
 </html>

@@ -5,6 +5,8 @@ namespace dndcompany\galaxseed;
 use dndcompany\galaxseed\controller\game\GameController;
 use dndcompany\galaxseed\controller\hero\HeroController;
 use dndcompany\galaxseed\model\entity\Hero;
+use dndcompany\galaxseed\model\GameManager;
+use dndcompany\galaxseed\model\HeroManager;
 
 require "config.php";
 
@@ -22,17 +24,18 @@ require "config.php";
 // on pioche une carte en debut du tour du joueur
 
 $html='';
+$heroManager= new HeroManager();
+$dataTemplate=$heroManager->initCardGame();
 
+$gameManager=new GameManager();
+$gameManager->initHeroGame();
 
 
 if (!isset($hero1))
 {
     $gameController= new GameController();
     $hero1=$gameController->initGame(1);
-    $hero2=$gameController->initGame(2);
     $hero1->pickCardInDeck();
-    // Modifier le setter pour setter la localisation des cartes
-//    Sauvegarder dans card_game
     var_dump($hero1);
     $tabHand=$hero1->getCardsInHand();
 }
@@ -40,17 +43,17 @@ if (!isset($hero1))
 if (isset($_GET['action']) && $_GET['action'] === 'invoke' && isset($_GET['card']))
 {
     $heroController= new HeroController();
-    $hero1=$gameController->getHero(1);
-    $html=$heroController->viewHand($tabHand);
+    $hero1=new Hero($gameController->getHero(1));
     $heroController->invocation((int)$_GET['card'], $hero1);
-    $hero1->checkInvoke((int)$_GET['card']);
 
-var_dump($hero1);
 }
 
 $heroController= new HeroController();
-$html=$heroController->viewHand($tabHand);
+$cardHand=$heroController->viewHand(1);
+var_dump($hero1);
+$cardBoard=$heroController->viewCardBoard(1);
 
+//A chaque rafraichissement , recupérer deck, hand et board pour les 2 joueurs
 
 
 require "view/board.php";

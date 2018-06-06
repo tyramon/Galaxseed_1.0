@@ -25,6 +25,7 @@ class card
     private $hero;
     private $illustration;
     private $type;
+    private $description;
 
 
     public function __construct(array $cardData)
@@ -32,23 +33,17 @@ class card
         $this->hydrate($cardData);
     }
 
-    public function hydrate(array $cardData){
-//        $card_manager = new CardManager();
-//        $cardData = $card_manager->getCard($card_name);
-
-        $this->setId($cardData['ct_id']);
-        $this->setName($cardData['ct_name']);
-        $this->setHp($cardData['ct_health_point']);
-        $this->setMana($cardData['ct_mana']);
-        $this->setAttack($cardData['ct_attack']);
-        $this->setShield($cardData['ct_shield']);
-        $this->setLocation('');
-        $this->setStatus('');
-        $this->setHero('');
-        $this->setIllustration('');
-        $this->setType($cardData['t_id']);
-        //DB a mettre à jour
-//        $this->setIllustration($cardData['l_id']);
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $val) {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                if (is_numeric($val)) {
+                    $val = (int)$val;
+                }
+                $this->$method($val);
+            }
+        }
     }
 
     // Attaquer un joueur
@@ -67,132 +62,112 @@ class card
         }
     }
 
-    /**
-     * @return mixed
-     */
+
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
+
     public function getType()
     {
         return $this->type;
     }
 
-    /**
-     * @param mixed $type
-     */
+
     public function setType($type): void
     {
         $this->type = $type;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @param mixed $id
-     */
+
     public function setId($id)
     {
         $this->id = $id;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getName()
     {
         return $this->name;
     }
 
-    /**
-     * @param mixed $name
-     */
+
     public function setName($name)
     {
         $this->name = $name;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getHp()
     {
         return $this->hp;
     }
 
-    /**
-     * @param mixed $hp
-     */
+
     public function setHp($hp)
     {
         $this->hp = $hp;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getMana()
     {
         return $this->mana;
     }
 
-    /**
-     * @param mixed $mana
-     */
+
     public function setMana($mana)
     {
         $this->mana = $mana;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getAttack()
     {
         return $this->attack;
     }
 
-    /**
-     * @param mixed $attack
-     */
+
     public function setAttack($attack)
     {
         $this->attack = $attack;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getShield()
     {
         return $this->shield;
     }
 
-    /**
-     * @param mixed $shield
-     */
+
     public function setShield($shield)
     {
         $this->shield = $shield;
     }
 
-    /**
-     * @return mixed
-     */
+
     public function getLocation()
     {
         return $this->location;
     }
 
-    /**
-     * @param mixed $location
-     */
-    public function setLocation($location)
+
+    public function setLocation(int $idLoc)
     {
-        $this->location = $location;
+        $this->location = $idLoc;
     }
 
     /**
