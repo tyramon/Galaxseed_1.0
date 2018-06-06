@@ -1,0 +1,10 @@
+MCD
+- pas besoin de recursivité pr les villes 
+
+- les nains ne st pas dirrectement lié aux bierres :)
+ils font partie éventuellement d'un groupe et c'est dans la taverne qu'ils picoles 
+
+- sinon le MCD est bon
+
+SQL
+Bravo tu les as toutes faites et ça marche !

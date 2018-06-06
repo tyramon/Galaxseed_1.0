@@ -1,0 +1,9 @@
+Ce que tu peux améliorer, avoir :
+- faire des fonctions car ton code sera réutilisable
+- un fichier de config
+- la gestion d'erreur par exception pr la db
+- L'hors d'une requette il vaut mieux faire une recherche par ID que par une chaine de caractère, c'est beaucoup plus rapide et secure
+- Ta jointure tunnels dans ville est incomplete car elle n'est relié que à l'arrivée alors qu'elle devrait être relié aussi à ville départ
+- Pour optimiser les accès de la db il vaut mieux faire 1 requette plutot que plusieurs, ce qui est plus rapide que de faire pleins de requette
+
+Sinon félicitation, c'est nickel et ça marche
