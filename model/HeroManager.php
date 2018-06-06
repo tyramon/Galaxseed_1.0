@@ -59,7 +59,21 @@ class HeroManager
 
     public function GetDeck(int $id) : array
     {
-        $sql='SELECT * FROM card_template WHERE ht_id=:id';
+        $sql='SELECT 
+                ct_id as id, 
+                ct_name as `name`, 
+                ct_health_point as hp,	
+                ct_attack as attack, 
+                ct_mana as mana,	
+                ct_shield as shield, 
+                t_id as `type`,
+                ht_id as hero,
+                s_id as status,
+                ic_id as illustration,
+                l_id as location 
+                FROM card_template 
+                WHERE ht_id=:id';
+
         $data=DBManager::getInstance()->makeSelect($sql,['id'=>$id]);
 
         $deck=array();

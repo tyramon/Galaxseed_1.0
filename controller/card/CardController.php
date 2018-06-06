@@ -1,8 +1,15 @@
 <?php
 declare(strict_types=1);
 
+namespace dndcompany\galaxseed\controller\card;
+
+use dndcompany\galaxseed\controller\game;
+use dndcompany\galaxseed\model\entity\Card;
+
+
 class CardController
 {
+
     public function __construct()
     {
 
@@ -13,22 +20,12 @@ class CardController
 
     }
 
-<<<<<<< HEAD
+
     //appel l'affichage des cartes sur le plateau du joueur
     public function showBordCard(){
 
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
-
->>>>>>> Seb
-=======
-<<<<<<< HEAD
-=======
-
->>>>>>> Celine
 
     // la carte disparait du board
     public function discard(){
@@ -51,10 +48,5 @@ class CardController
         // Transforme une carte en bouclier
     }
 
-<<<<<<< HEAD
-=======
->>>>>>> Raphael
->>>>>>> Celine
-=======
->>>>>>> Celine
+
 }

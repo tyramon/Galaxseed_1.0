@@ -71,6 +71,8 @@ class Hero
         }
     }
 
+
+
     public function checkInvoke(int $id)
     {
         $tabHand = $this->getCardsInHand();

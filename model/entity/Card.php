@@ -3,16 +3,10 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model\entity;
 
-use dndcompany\galaxseed\model\CardManager;
 
-/**
- * Created by PhpStorm.
- * User: webuser1801
- * Date: 16/05/2018
- * Time: 10:18
- */
 
-class card
+
+class Card
 {
     private $id;
     private $name;
@@ -32,38 +26,35 @@ class card
         $this->hydrate($cardData);
     }
 
-    public function hydrate(array $cardData){
-//        $card_manager = new CardManager();
-//        $cardData = $card_manager->getCard($card_name);
 
-        $this->setId($cardData['ct_id']);
-        $this->setName($cardData['ct_name']);
-        $this->setHp($cardData['ct_health_point']);
-        $this->setMana($cardData['ct_mana']);
-        $this->setAttack($cardData['ct_attack']);
-        $this->setShield($cardData['ct_shield']);
-        $this->setLocation('');
-        $this->setStatus('');
-        $this->setHero('');
-        $this->setIllustration('');
-        $this->setType($cardData['t_id']);
-        //DB a mettre à jour
-//        $this->setIllustration($cardData['l_id']);
+    public function hydrate(array $data): void
+    {
+        foreach ($data as $key => $val) {
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                if (is_numeric($val)) {
+                    $val = (int)$val;
+                }
+                $this->$method($val);
+            }
+        }
     }
 
+
     // Attaquer un joueur
-    public function attack(object $cible, objet $attaquant){
-        $degats = $this->getAttack();
-        $cible->receiveDamage($degats, $attaquant);
+    public function actionAttack(Card $cible): void{
+
+            $degats = $this->getAttack();
+            $cible->receiveDamage($degats);
 
     }
 
     // la carte recoit des degats
-    public function receiveDamage(int $degat, object $attaquant){
+    public function receiveDamage(int $degat){
         $this->setHp($this->getHp() - $degat);
         if($this->getHp() <= 0){
             //defauser la carte
-            $this->setLocation('discard');
+            $this->setLocation(4);
         }
     }
 

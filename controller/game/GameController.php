@@ -63,6 +63,9 @@ class GameController
 //
 //    }
 
+
+
+
     public function endGame()
     {
         //Appel d'une vue (hero gagnant)

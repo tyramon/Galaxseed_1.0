@@ -2,9 +2,11 @@
 declare(strict_types=1);
 
 namespace dndcompany\galaxseed;
+use dndcompany\galaxseed\controller\card\CardController;
 use dndcompany\galaxseed\controller\game\GameController;
 use dndcompany\galaxseed\controller\hero\HeroController;
-use dndcompany\galaxseed\model\entity\Hero;
+
+
 
 require "config.php";
 
@@ -30,10 +32,27 @@ if (!isset($hero1))
     $gameController= new GameController();
     $hero1=$gameController->initGame(1);
     $hero2=$gameController->initGame(2);
+
+    // selection d'une carte dans la pioche
     $hero1->pickCardInDeck();
+    $hero2->pickCardInDeck();
+    $hero1->setCardsOnBoard($hero1->getCardsInDeck());
+    $hero2->setCardsOnBoard($hero2->getCardsInDeck());
+
+
+
+
+
+
+
+    // Placer une carte sur le plateau
+    //$hero1->playCard();
+
+
     // Modifier le setter pour setter la localisation des cartes
 //    Sauvegarder dans card_game
-    var_dump($hero1);
+
+
     $tabHand=$hero1->getCardsInHand();
 }
 
@@ -45,12 +64,19 @@ if (isset($_GET['action']) && $_GET['action'] === 'invoke' && isset($_GET['card'
     $heroController->invocation((int)$_GET['card'], $hero1);
     $hero1->checkInvoke((int)$_GET['card']);
 
-var_dump($hero1);
+;
 }
 
 $heroController= new HeroController();
 $html=$heroController->viewHand($tabHand);
 
 
+//attaquer carte adversaire
+$cards1 = $hero1->getCardsOnBoard();
+$cards2 = $hero2->getCardsOnBoard();
+
+//var_dump($hero1, $hero2);
+var_dump($heroController->attack($hero2, $cards2[0], $cards1[0]));
+//var_dump($hero1, $hero2);
 
 require "view/board.php";
