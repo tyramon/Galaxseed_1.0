@@ -2,8 +2,9 @@
 declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
-<<<<<<< HEAD
+
 use dndcompany\galaxseed\model\entity\Hero;
+use dndcompany\galaxseed\model\entity\Card;
 
 /**1
  * Created by PhpStorm.
@@ -27,13 +28,9 @@ class HeroManager
         $data = DBManager::getInstance()->makeSelect($sql);
 
         return new Hero($data[0]);
+    }
 
-=======
 
-use dndcompany\galaxseed\model\entity\Card;
-
-class HeroManager
-{
     public function heroDataTemplate($id)
     {
         // recuperation des infos du hero
@@ -50,30 +47,16 @@ class HeroManager
         $dataHero=DBManager::getInstance()->makeSelect($sql, ['id'=>$id]);
 
         return $dataHero[0];
->>>>>>> Celine
     }
 
-    /**
-     * Updates the Hero information after each turn
-     * @param array $newStats
-     */
     public function updateHeroGame(Hero $heroId) : void         // on lui passe l'objet hero avec les nouvelles stats pour les enregistrer en db
     {
-<<<<<<< HEAD
         $sql = 'faire le update';
-=======
         // mise a jour des stats du hero
-
-    }
->>>>>>> Celine
-
         DBManager::getInstance()->makeUpdate($sql);
     }
 
-<<<<<<< HEAD
-    public function killHero(int $id)
-    {
-=======
+
     public function GetDeck(int $id) : array
     {
         $sql='SELECT * FROM card_template WHERE ht_id=:id';
@@ -88,9 +71,6 @@ class HeroManager
         shuffle($deck);
 
         return $deck;
-    }
->>>>>>> Celine
-
     }
 
 }
