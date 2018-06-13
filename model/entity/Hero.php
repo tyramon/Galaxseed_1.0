@@ -6,6 +6,9 @@ namespace dndcompany\galaxseed\model\entity;
 // Le hero sert aussi de deck manager, c'est lui a les cartes et leurs emplacements. selon la location de la carte
 // (dans la main, sur le plateau, dans la pioche ou dans la défausse) ou met la carte dans le tableau correspondant
 
+use dndcompany\galaxseed\model\CardManager;
+use dndcompany\galaxseed\model\HeroManager;
+
 class Hero
 {
     const HERO_HIT = 1;
@@ -16,7 +19,7 @@ class Hero
     protected $healthPoints;
     protected $manaCount;
     protected $name;
-    protected $illustration;
+    protected $board;
     protected $heroTemplateId;
     protected $gameId;
     protected $cardsInHand; // array -> toutes les cartes (objets) en main
@@ -55,7 +58,7 @@ class Hero
         return self::HERO_HIT;
     }
 
-    public function pickCardInDeck() // method formerly known as takeCard()
+    public function pickCardInDeck()
     {
         // choisir une carte dans la pioche
         // la carte choisie passe de la pioche a la main ( change card $location from l_id=1(deck) to l_id=2(hand)
@@ -63,29 +66,29 @@ class Hero
         $deck = $this->getCardsInDeck();
         $tailleTab = count($deck);
 
-        if ($tailleTab > 0) {
-            $cards[] = $deck[$tailleTab - 1];
-            $this->setCardsInHand($cards);
+        if ($tailleTab > 0)
+        {
+            $card = $deck[$tailleTab - 1];
+            $card->setLocation(2);
+            $cards[]=$card;
             unset($deck[$tailleTab - 1]);
             $this->setCardsInDeck($deck);
+            $this->setCardsInHand($cards);
+
+            $cardManager=new CardManager();
+            $cardManager->updateCardGame((int)$card->getId(), 2);
         }
     }
 
 
-
-    public function checkInvoke(int $id)
+    //Verifie si mana suffisant pour invocation
+    public function checkInvoke(Card $card, Hero $hero)
     {
-        $tabHand = $this->getCardsInHand();
-
-        foreach ($tabHand as $key => $val) {
-            if ((int)$val->getId() == $id) {
-                $mana = (int)$val->getMana();
-
-                if ($this->getManaCount() >= $mana) {
-                    return true;
-                }
-            }
+        if ($card->getMana() <= $hero->getManaCount())
+        {
+            return true;
         }
+
         return false;
     }
 
@@ -95,22 +98,22 @@ class Hero
         // change card $location to 'discard' (l_id=4)
     }
 
-    public function playCard(int $cardId): void   // method formerly known as invoke()
+    public function playCard(Card $card, Hero $hero): void   // method formerly known as invoke()
     {
         // le joueur joue sa carte sur le board
         // Change card $location to 'board' (l_id=3)
 
-        $hand = $this->getCardsInHand();
+        $card->setLocation(3);
+        $hero->setCardsOnBoard([$card]);
+        $hero->setManaCount($hero->getManaCount()-$card->getMana());
+
+        $heromanager=new HeroManager();
+        $heromanager->updateHeroGame($hero->getId(), $hero->getManaCount());
+
+        $cardManager= new CardManager();
+        $cardManager->updateCardGame($card->getId(), $card->getLocation());
 
 
-        foreach ($hand as $key => $val) {
-            if ((int)$val->getId() == $cardId) {
-                $this->setCardsOnBoard($val);
-                unset($hand[$key]);
-            }
-        }
-
-        $this->setCardsInHand($hand);
     }
 
     public function selectCardToPlay()
@@ -152,10 +155,64 @@ class Hero
     }
 
 
-    public function setIllustration($illustration)
+    public function setBoard($illustration)
     {
         $this->illustration = $illustration;
     }
+
+    public function getBoard()
+    {
+        return $this->board;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHealthPoints()
+    {
+        return $this->healthPoints;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getManaCount()
+    {
+        return $this->manaCount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHeroTemplateId()
+    {
+        return $this->heroTemplateId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGameId()
+    {
+        return $this->gameId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCardsInDiscard()
+    {
+        return $this->cardsInDiscard;
+    }
+
 
 
     public function setHeroTemplateId($heroTemplateId)

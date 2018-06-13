@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-namespace dndcompany\galaxseed\controller\card;
 
-use dndcompany\galaxseed\controller\game;
-use dndcompany\galaxseed\model\entity\Card;
+
+//  QUESTION:
+//  A-t-on vraiment besoin d'un cardController vu que c'est le heroController qui va faire
+//  les discard(), invoke(), selectcard() etc. ?
+
 
 
 class CardController
 {
-
     public function __construct()
     {
 
@@ -20,12 +21,10 @@ class CardController
 
     }
 
-
-    //appel l'affichage des cartes sur le plateau du joueur
+// appel l'affichage des cartes sur le plateau du joueur
     public function showBordCard(){
 
     }
-
 
     // la carte disparait du board
     public function discard(){
@@ -47,6 +46,4 @@ class CardController
     {
         // Transforme une carte en bouclier
     }
-
-
 }

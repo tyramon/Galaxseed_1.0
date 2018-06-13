@@ -9,20 +9,72 @@ declare(strict_types=1);
 
 class User
 {
+    // rajouter sa capacity et ses authorizations
+    private $id;
+    private $login;
+    private $password;
+    private $email;
+    private $registration_date;
+    private $game_count;
+    private $victory_count;
+    private $avatar;
+    private $capacity;
 
-    private $_id;
-    private $_login;
-    private $_password;
-    private $_email;
-    private $_registration_date;
-    private $_game_count;
-    private $_victory_count;
-    private $_avatar;
-
+    /**
+     * User constructor.
+     * @param array $dataUserManager
+     */
     public function __construct(array $dataUserManager)
     {
         $this->hydrate($dataUserManager);
     }
+
+    /**
+     * @param $data
+     */
+    public function hydrate($data)
+    {
+        // Removes the first two letters to match the method name
+        foreach ($data as $key => $val){
+
+            if (strpos($key, 'u_'))
+            {
+                $key = str_replace('u_', '', $key);
+            }
+            elseif (strpos($key, 'c_'))
+            {
+                $key = str_replace('c_', '', $key);
+            }
+
+            // classic hydration steps
+            $method = 'set' . ucfirst($key);
+
+            if (method_exists($this, $method)){
+
+                if (is_numeric($val))
+                {
+                    $val = (int)$val;
+                }
+
+                $this->$method($val);
+            }
+        }
+    }
+
+    /*
+     *       METHODS
+     */
+
+
+
+    // methods here if needed
+
+
+
+    /*
+     *       SETTERS & GETTERS
+     */
+
 
 
     /**
@@ -30,15 +82,15 @@ class User
      */
     public function getId()
     {
-        return $this->_id;
+        return $this->id;
     }
 
     /**
      * @param mixed $id
      */
-    public function setId($id)
+    public function setId($id): void
     {
-        $this->_id = $id;
+        $this->id = $id;
     }
 
     /**
@@ -46,15 +98,15 @@ class User
      */
     public function getLogin()
     {
-        return $this->_login;
+        return $this->login;
     }
 
     /**
      * @param mixed $login
      */
-    public function setLogin($login)
+    public function setLogin($login): void
     {
-        $this->_login = $login;
+        $this->login = $login;
     }
 
     /**
@@ -62,15 +114,15 @@ class User
      */
     public function getPassword()
     {
-        return $this->_password;
+        return $this->password;
     }
 
     /**
      * @param mixed $password
      */
-    public function setPassword($password)
+    public function setPassword($password): void
     {
-        $this->_password = $password;
+        $this->password = $password;
     }
 
     /**
@@ -78,15 +130,15 @@ class User
      */
     public function getEmail()
     {
-        return $this->_email;
+        return $this->email;
     }
 
     /**
      * @param mixed $email
      */
-    public function setEmail($email)
+    public function setEmail($email): void
     {
-        $this->_email = $email;
+        $this->email = $email;
     }
 
     /**
@@ -94,15 +146,15 @@ class User
      */
     public function getRegistrationDate()
     {
-        return $this->_registration_date;
+        return $this->registration_date;
     }
 
     /**
      * @param mixed $registration_date
      */
-    public function setRegistrationDate($registration_date)
+    public function setRegistrationDate($registration_date): void
     {
-        $this->_registration_date = $registration_date;
+        $this->registration_date = $registration_date;
     }
 
     /**
@@ -110,15 +162,15 @@ class User
      */
     public function getGameCount()
     {
-        return $this->_game_count;
+        return $this->game_count;
     }
 
     /**
      * @param mixed $game_count
      */
-    public function setGameCount($game_count)
+    public function setGameCount($game_count): void
     {
-        $this->_game_count = $game_count;
+        $this->game_count = $game_count;
     }
 
     /**
@@ -126,15 +178,15 @@ class User
      */
     public function getVictoryCount()
     {
-        return $this->_victory_count;
+        return $this->victory_count;
     }
 
     /**
      * @param mixed $victory_count
      */
-    public function setVictoryCount($victory_count)
+    public function setVictoryCount($victory_count): void
     {
-        $this->_victory_count = $victory_count;
+        $this->victory_count = $victory_count;
     }
 
     /**
@@ -142,16 +194,30 @@ class User
      */
     public function getAvatar()
     {
-        return $this->_avatar;
+        return $this->avatar;
     }
 
     /**
      * @param mixed $avatar
      */
-    public function setAvatar($avatar)
+    public function setAvatar($avatar): void
     {
-        $this->_avatar = $avatar;
+        $this->avatar = $avatar;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
 
-}
+    /**
+     * @param mixed $capacity
+     */
+    public function setCapacity($capacity): void
+    {
+        $this->capacity = $capacity;
+    }
+} // End of class

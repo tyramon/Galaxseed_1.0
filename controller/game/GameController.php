@@ -10,6 +10,14 @@ use dndcompany\galaxseed\model\HeroManager;
 class GameController
 {
 
+    /**
+     * Initializes the game:
+     * 1/ gets the hero template in the database
+     * 2/ gets the card associated to the hero
+     * 3/ creates the hero and places his cards in the deck
+     * @param int $id
+     * @return Hero
+     */
     public function initGame(int $id)
     {
         $heroManager= new HeroManager();
@@ -19,8 +27,6 @@ class GameController
         $hero->setCardsInDeck($heroDeck);
 
         return $hero;
-
-
 //        $heroManager= new HeroManager();
 //        $heroData2=$heroManager->heroData(2);
 //        $heroDeck2=$heroManager->GetDeck(2);
@@ -28,6 +34,12 @@ class GameController
 //        $hero2->setCardsInDeck($heroDeck2);
     }
 
+
+    /**
+     * retuns an array with all the info on the hero during the game.
+     * @param int $idHero
+     * @return array
+     */
     public function getHero(int $idHero) : array
     {
         $heroManager= new HeroManager();
@@ -35,7 +47,13 @@ class GameController
         return $heroData;
     }
 
-    public function manaPoolUp( Hero $hero1, Hero $hero2) : void
+
+    /**
+     * Increases the mana pool of each Hero by one.
+     * @param Hero $hero1
+     * @param Hero $hero2
+     */
+    public function manaPoolUp(Hero $hero1, Hero $hero2) : void
     {
         if ($hero1->getManaPool() < 10 && $hero2->getManaPool() < 10)
         {
@@ -45,7 +63,11 @@ class GameController
         }
     }
 
-    public function switchPlayerTurn( Game $game) : void
+
+    /**
+     * @param Game $game
+     */
+    public function switchPlayerTurn(Game $game) : void
     {
         $actualPlayer=$game->getTurnPlayer();
         if ($actualPlayer === 1)
