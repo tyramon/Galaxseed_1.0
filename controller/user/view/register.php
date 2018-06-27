@@ -36,7 +36,7 @@
             echo "</ul></div>";
         }
         ?>
-        <input type="submit" value="valider">
+        <input class="button" type="submit" value="valider">
     </form>
-    <a href="index.php"><button>accueil</button></a>
+    <a class="button" href="?controller=home&action=default">Retour à l'accueil</a>
 

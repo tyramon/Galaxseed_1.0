@@ -38,7 +38,7 @@ class UserController extends CoreController
     public function defaultAction(){
 
 
-        $this->render($this->getController(),'default', []);
+        return $this->render($this->getController(),'default', []);
     }
 
     /**
@@ -59,12 +59,12 @@ class UserController extends CoreController
         if ($this->isAuth())
         {
             // require('home/profile.php');
-            $this->render($this->getController(),'profile', []);
+           return $this->render($this->getController(),'profile', []);
         }
         else
         {
             // require('home/default.php');
-            $this->render($this->getController(),'default', []);
+           return $this->render($this->getController(),'default', []);
         }
     }
 
@@ -72,10 +72,10 @@ class UserController extends CoreController
     /**
      * Redirects user to the register page
      */
-    public function register()
+    public function registerAction()
     {
         // require('home/register.php');
-        $this->render($this->getController(),'register', []);
+        return $this->render($this->getController(),'register', []);
     }
 
 
@@ -193,7 +193,7 @@ class UserController extends CoreController
                     {
                         $_SESSION['msg']['succes'] = 'Merci de vous etre inscrit, vous pouvez desormer vous connecter';
                         // require('home/login.php');
-                        $this->render($this->getController(),'profile', []);
+                        return $this->render($this->getController(),'profile', []);
                     }
                 } catch (\Exception $e) {
                     echo 'Une erreur s\'est produite: ' . $e->getMessage(); // echo pour le moment mais il faudra le gerer comme il faut plus tard
@@ -202,13 +202,13 @@ class UserController extends CoreController
             else
             {
                 // require('home/register.php');
-                $this->render($this->getController(),'register', []);
+                return $this->render($this->getController(),'register', []);
             }
         }
         else
         {
             // require('home/register.php');
-            $this->render($this->getController(),'register', []);
+            return $this->render($this->getController(),'register', []);
         }
     }
 

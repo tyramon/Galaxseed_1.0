@@ -7,3 +7,8 @@
  */
 
 echo 'welcome on the homepage!';
+
+?>
+
+<a class="button" href="?controller=user&action=default">Se connecter</a>
+<a class="button" href="?controller=user&action=register">S'inscrire</a>
