@@ -64,33 +64,15 @@ if( !defined( 'ABS_PATH' ) ){
 }
 
 if( !defined( 'APP_PATH' ) ){
-    define( 'APP_PATH', ABS_PATH . DS . 'dndcompany/galaxseed'.DS ); // Path with the project name
+    define( 'APP_PATH', ABS_PATH . 'dndcompany\galaxseed'.DS ); // Path with the project name
 }
 
 if( !defined( 'CONTROLLER_PATH' ) ){
-    define( 'CONTROLLER_PATH', APP_PATH. 'controller' . DS ); // Absolute path to the root folder
+    define('CONTROLLER_PATH','dndcompany\galaxseed\controller' .DS); // Absolute path to the root folder
 }
 
-// define ('VIEW_FOLDER', dirname(__FILE__).'/view/' );
+// define ('VIEW_FOLDER', dirname(__FILE__).'/home/' );
 
 
 
 
-
-
-
-
-spl_autoload_register(function ($class) {
-
-    if(strpos($class, 'dndcompany\galaxseed\\') === 0) {
-        $cheminClass = substr($class, 21);
-    } else {
-        $cheminClass = $class;
-    }
-
-    if(file_exists($cheminClass.'.php')) {
-        require_once ($cheminClass.'.php');
-    } else {
-        throw new \Exception('Class non trouvé : '.$class.'.php');
-    }
-});

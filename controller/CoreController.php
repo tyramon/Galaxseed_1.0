@@ -12,14 +12,18 @@ namespace dndcompany\galaxseed\controller;
 class CoreController
 {
 
+    public function __construct()
+    {
+    }
+
 
     /**
-     * Renders the view (aka makes a require() of the appropriate vue and extract() the variables(params))
+     * Renders the home (aka makes a require() of the appropriate vue and extract() the variables(params))
      * @param string $controllerName
      * @param string $viewName
      * @param array $params
      */
-    public function render(string $controller, string $view, array $params) : void
+    public function render(string $controller, string $view, array $params)
     {
         // $params est un tableau avec 'nom variable' => $variable comme sur Symfony.
         // autre solution serait de créer un attribut $params=[] dans le corController et faire des $this->setParams dans
@@ -30,10 +34,15 @@ class CoreController
             extract($params);
         }
 
-        // exemple de chemin: dndcompany/galaxseed/controller/user/view/default.php
-        if (file_exists(CONTROLLER_PATH . $controller . DS . 'view/' . $view . '.php'))
+        $viewPath = 'controller\\' . $controller . DS . 'view' . DS . $view . '.php';
+
+        // exemple de chemin: dndcompany/galaxseed/controller/user/home/default.php
+        if (file_exists($viewPath))
         {
-            require(CONTROLLER_PATH . $controller . DS . 'view/' . $view . '.php');
+           return  require($viewPath);
         }
+
+        return 'fichier inexistant';
+
     }
 }

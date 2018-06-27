@@ -1,110 +1,64 @@
 <?php
 declare(strict_types=1);
 
-namespace dndcompany\galaxseed;
-use dndcompany\galaxseed\controller\game\GameController;
-use dndcompany\galaxseed\controller\hero\HeroController;
-use dndcompany\galaxseed\model\entity\Hero;
-use dndcompany\galaxseed\model\GameManager;
-use dndcompany\galaxseed\model\HeroManager;
+namespace dndcompany\galaxseed;  // namespace de base du projet
 
-require "config.php";
+use Exception;
+use dndcompany\galaxseed\model\SRequest;
+
+require ('config.php');
+require ('Autoloader.php');
+Autoloader::register();         // appel l'autoloader
 
 
-try {
-    /**
-     * --------------------------------------------------
-     * AUTOROUTING
-     * --------------------------------------------------
-     */
-    if( SRequest::getInstance()->get( 'c' )!==null )
-        $bundle = ucwords( strtolower( SRequest::getInstance()->get( 'c' ) ) ); // Defines the controller's name depending on passed value
-    else
-        $bundle = 'Home';//'Default'; // Defines the default controller's name
+/**
+ * --------------------------------------------------
+ * ROUTER
+ * --------------------------------------------------
+ */
 
-    $class = $bundle . 'Controller';
+try
+{
+    if( SRequest::getInstance()->get('controller') !==null )            // on si on a le param 'controller' dans le get
+    {
+        $ctrl = ucwords( strtolower( SRequest::getInstance()->get( 'controller' ) ) ); // on met le nom du ctrler en minuscules et premiere lettre majuscule
+    } else
+        {
+            $ctrl = 'Home';                                        // si pas de param 'controller'-> ctrler par default = Home
+        }
 
-    // if( file_exists( ( defined( 'MODULESPATH' ) ? MODULESPATH : '' ) . $bundle . ( defined( 'DS' ) ? DS : DIRECTORY_SEPARATOR ) . $class . '.php' ) )
-    if( class_exists( $class ) ) :
-        $ctrl = new $class( SRequest::getInstance() ); // Instantiates the controller
+    $controller = CONTROLLER_PATH . strtolower($ctrl) . '\\' . $ctrl . 'Controller';  // nom de la classe
 
-        if( SRequest::getInstance()->get( 'a' )!==null )
-            $method = SRequest::getInstance()->get( 'a' ) . 'Action'; // Defines the method's name depending on passed value
-        else
-            $method = 'defaultAction'; // Defines the default method's name
 
-        if( method_exists( $ctrl, $method ) ) :
-            SPDO::getInstance()->init( DB_HOST, DB_NAME, DB_LOGIN, DB_PWD );
-            $ctrl->$method( SPDO::getInstance()->getPDO() ); // Calls the method
-            exit;
-        endif;
-    endif;
+    if( class_exists( $controller ) )
+    {
+        $oController = new $controller();           // si classe existe on l'instancie
 
-    if( $class=='DefaultController' && $method=='defaultAction' )
-        header( 'Location:' . DOMAIN . '500.php');
-    else
-        header( 'Location:' . DOMAIN . '404.php');
-} catch( Exception $e ) {
-    if( defined( 'DEBUG' ) && DEBUG )
-        if( get_class( $e )=='KernelException' )
-            die( $e );
-        else
-            die( $e->getMessage() );
-    else
-        header( 'Location:' . DOMAIN . '500.php');
+
+        if( SRequest::getInstance()->get( 'action' )!==null )           // Si param 'action' dans le Get -> on appel la methode
+        {
+            $method = SRequest::getInstance()->get( 'action' ) . 'Action';     // methode a appeler
+        } else {
+          $method = 'defaultAction';                                      // Action par default
+        }
+
+       // var_dump($oController, $method);
+
+        if( method_exists( $oController, $method ) )                    // on check si la methode existe dans le controller
+        {
+            $oController->$method();                                   // si la méthode exsiste, on l'appelle
+        } else {
+            throw new \Exception("la méthode $method n'existe pas.");
+        }
+
+    } else {
+        throw new \Exception("Le controlleur $controller n'existe pas.");
+    }
+}
+catch ( Exception $e )
+{
+    echo $e->getMessage();  // TODO modifier le echo et le traiter correctement
 }
 
 
 
-
-
-
-
-
-////teste
-////tour 1:
-//// plateau pres pour le premier tour du joueur 1
-//// les cartes sont distribuees
-//// joueur 1 est actif et joureur 2 est passif
-//// les deux joueurs ont 1 de mana
-//// le joueur 1 peut poser une carte
-//// il peut passer son tour
-//// puis la meme chose pour le joueur 2
-//// enfin le round augmante de 1
-//// le mana augmante de 1
-//// on pioche une carte en debut du tour du joueur
-//
-//$html='';
-//$heroManager= new HeroManager();
-//$dataTemplate=$heroManager->initCardGame();
-//
-//$gameManager=new GameManager();
-//$gameManager->initHeroGame();
-//
-//
-//if (!isset($hero1))
-//{
-//    $gameController= new GameController();
-//    $hero1=$gameController->initGame(1);
-//    $hero1->pickCardInDeck();
-//    var_dump($hero1);
-//    $tabHand=$hero1->getCardsInHand();
-//}
-//
-//if (isset($_GET['action']) && $_GET['action'] === 'invoke' && isset($_GET['card']))
-//{
-//    $heroController= new HeroController();
-//    $hero1=new Hero($gameController->getHero(1));
-//    $heroController->invocation((int)$_GET['card'], $hero1);
-//
-//}
-//
-//$heroController= new HeroController();
-//$cardHand=$heroController->viewHand(1);
-//var_dump($hero1);
-//$cardBoard=$heroController->viewCardBoard(1);
-//
-////A chaque rafraichissement , recupérer deck, hand et board pour les 2 joueurs
-//
-//
-//require "view/board.php";

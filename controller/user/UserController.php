@@ -33,9 +33,9 @@ class UserController extends CoreController
 
 
     /**
-     * return the default user view (could potentially be the index page)
+     * return the default user home
      */
-    public function default(){
+    public function defaultAction(){
 
 
         $this->render($this->getController(),'default', []);
@@ -46,7 +46,7 @@ class UserController extends CoreController
      */
     public function login()
     {
-        //require('view/login.php');
+        //require('home/login.php');
         $this->render($this->getController(),'login', []);
     }
 
@@ -58,12 +58,12 @@ class UserController extends CoreController
     {
         if ($this->isAuth())
         {
-            // require('view/profile.php');
+            // require('home/profile.php');
             $this->render($this->getController(),'profile', []);
         }
         else
         {
-            // require('view/default.php');
+            // require('home/default.php');
             $this->render($this->getController(),'default', []);
         }
     }
@@ -74,7 +74,7 @@ class UserController extends CoreController
      */
     public function register()
     {
-        // require('view/register.php');
+        // require('home/register.php');
         $this->render($this->getController(),'register', []);
     }
 
@@ -170,9 +170,7 @@ class UserController extends CoreController
         }
     }
 
-    //      controle l'entré du formulaire en post a la création de l'utilisateur
-    //      lance la query ajout database
-    //      et redirige en fonction
+
     /**
      *  Adds the new user in the database
      *  1- Validates the form sent by the user
@@ -183,28 +181,33 @@ class UserController extends CoreController
     {
         if (SRequest::getInstance()->post() )
         {
-            $error= $this->registerValidation();
+            $error = $this->registerValidation();
 
             if (empty($error))
             {
                 $manager = new UserManager();
 
-                if ($manager->addUser())
-                {
-                    $_SESSION['msg']['succes'] = 'Merci de vous etre inscrit, vous pouvez desormer vous connecter';
-                    // require('view/login.php');
-                    $this->render($this->getController(),'profile', []);
+                try {
+
+                    if ($manager->addUser())
+                    {
+                        $_SESSION['msg']['succes'] = 'Merci de vous etre inscrit, vous pouvez desormer vous connecter';
+                        // require('home/login.php');
+                        $this->render($this->getController(),'profile', []);
+                    }
+                } catch (\Exception $e) {
+                    echo 'Une erreur s\'est produite: ' . $e->getMessage(); // echo pour le moment mais il faudra le gerer comme il faut plus tard
                 }
             }
             else
             {
-                // require('view/register.php');
+                // require('home/register.php');
                 $this->render($this->getController(),'register', []);
             }
         }
         else
         {
-            // require('view/register.php');
+            // require('home/register.php');
             $this->render($this->getController(),'register', []);
         }
     }
@@ -236,7 +239,7 @@ class UserController extends CoreController
 
 
 // A terminer (dessous)
-    
+
 //    public function deleteUser()
 //    {
 //
