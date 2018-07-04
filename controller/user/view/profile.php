@@ -6,10 +6,12 @@
  * Time: 09:48
  */
 
-//echo 'bienvenue sur ton profile '.$_SESSION['token']->u_login;
+$user = $_SESSION['user'];
 
 ?>
+<h2>Bienvenu <?=$user->getFirstname()?> !</h2>
 
-<a href="index.php"><button>accueil</button></a>
-<a href="index.php?controller=user&action=logout"><button>se deconnecter</button></a>
+
+<a class="button" href="?controller=user&action=update">Modifier mon profil</a>
+<a class="button" href="?controller=user&action=logout">se deconnecter</a>
 

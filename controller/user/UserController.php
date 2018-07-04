@@ -33,10 +33,13 @@ class UserController extends CoreController
 
 
     /**
-     * return the default user home
+     * return the default homepage when the user isn't logged in
      */
-    public function defaultAction(){
-
+    public function defaultAction()
+    {
+        if ($this->isAuth()){
+            return $this->render($this->getController(),'profile', []);
+        }
 
         return $this->render($this->getController(),'default', []);
     }
@@ -44,29 +47,29 @@ class UserController extends CoreController
     /**
      * redirects user to the login page
      */
-    public function login()
+    public function loginAction()
     {
         //require('home/login.php');
         $this->render($this->getController(),'login', []);
     }
 
-
-    /**
-     * Redirects user to his profile page
-     */
-    public function profile()
-    {
-        if ($this->isAuth())
-        {
-            // require('home/profile.php');
-           return $this->render($this->getController(),'profile', []);
-        }
-        else
-        {
-            // require('home/default.php');
-           return $this->render($this->getController(),'default', []);
-        }
-    }
+//
+//    /**
+//     * Redirects user to his profile page
+//     */
+//    public function profile()
+//    {
+//        if ($this->isAuth())
+//        {
+//            // require('home/profile.php');
+//           return $this->render($this->getController(),'profile', []);
+//        }
+//        else
+//        {
+//            // require('home/default.php');
+//           return $this->render($this->getController(),'default', []);
+//        }
+//    }
 
 
     /**
@@ -85,47 +88,46 @@ class UserController extends CoreController
      * returns an array with the errors
      * @return array
      */
-    public function registerValidation(): array
+    public function registerValidation($postData) : array
     {
         $error = [];
-        $request = SRequest::getInstance();
 
-        if (!empty($request->post('identifiant')) &&
-            !empty($request->post('nom')) &&
-            !empty($request->post('prenom')) &&
-            !empty($request->post('email')) &&
-            !empty($request->post('passe')))
+        if (!empty($postData['login']) &&
+            !empty($postData['lastname']) &&
+            !empty($postData['firstname']) &&
+            !empty($postData['email']) &&
+            !empty($postData['password']))
         {
             $manager = new UserManager();
-            $loginTaken = $manager->loginIsAvailable();
-            $emailTaken = $manager->emailIsAvailable();
+            $loginAvailable = $manager->loginIsAvailable($postData['login']);
+            $emailAvailable = $manager->emailIsAvailable($postData['email']);
 
             // Login validation
-            if (!preg_match('/^[a-zA-Z0-9_]+$/', $request->post('identifiant'))){
+            if (!preg_match('/^[a-zA-Z0-9_]+$/', $postData['login'])){
                 $error[] = "Ce pseudo n\'est pas valide.";
-            } elseif ($loginTaken == true) {
+            } elseif ($loginAvailable == false) {
                 $error[] = 'L\'identifiant est déjà utilisé.';
             }
 
             // lastname validation
-            if (!preg_match('/^[a-zA-Z_]+$/', $request->post('nom'))){
+            if (!preg_match('/^[a-zA-Z_]+$/', $postData['lastname'])){
                 $error[] = "Le format du nom n\'est pas un format valide";
             }
 
             // firstname validation
-            if (!preg_match('/^[a-zA-Z_]+$/', $request->post('prenom'))) {
+            if (!preg_match('/^[a-zA-Z_]+$/', $postData['firstname'])) {
                 $error[] = "Le format du prénom n\'est pas un format valide";
             }
 
             // email validation
-            if (!filter_var($request->post('email'), FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($postData['email'], FILTER_VALIDATE_EMAIL)) {
                 $error[] = "Le format de votre email est invalide";
-            } elseif ($emailTaken == true) {
+            } elseif ($emailAvailable == false) {
                 $error[] = 'Cette adresse email est déjà utilisée.';
             }
 
             // password validation
-            if ($request->post('passe') !== $request->post('confirm') || empty($request->post('passe'))) {
+            if ($postData['password'] !== $postData['password_confirm'] || empty($postData['password'])) {
                 $error[] = "Les mots de passe ne correspondent pas.";
             }
         }
@@ -142,31 +144,38 @@ class UserController extends CoreController
      * Checks if user exists
      * Compares the password entered by the user in the form and the password in the database
      */
-    public function connexion(){
+    public function connexionAction(){
 
         if (array_key_exists('login',SRequest::getInstance()->post()) && !empty(SRequest::getInstance()->post('login')))
         {
-            $manager = new UserManager();
+            try {
+                $manager = new UserManager();
+                $user = $manager->getUserByLogin(SRequest::getInstance()->post('login'));
 
-            $user = $manager->getUserByLogin(SRequest::getInstance()->post('login'));
+            }
+            catch (\Exception $e)
+            {
+                echo 'Message d\'erreur : ' . $e->getMessage();
+            }
+
 
             if ($user !== false && password_verify(SRequest::getInstance()->post('psw'),$user->getPassword()))
             {
                 $_SESSION['token'] = $user;
-                require('view/default.php');
-                // $this->render('default', []);
+                $_SESSION['user'] = $user;
+
+                return $this->render($this->getController(),'profile', []);
             }
             else
             {
-                $_SESSION['msg']['error'] = 'login/password incorrect';
-                require('view/login.php');
-                // $this->render('login', []);
+                $_SESSION['msg']['error'] = 'Login ou mot de passe incorrect';
+                return $this->render($this->getController(),'default', []);
             }
         }
         else
         {
-            require('view/login.php');
-            // $this->render('login', []);
+            $_SESSION['msg']['error'] = 'Veuillez entrer un login';
+            return $this->render($this->getController(),'default', []);
         }
     }
 
@@ -177,23 +186,22 @@ class UserController extends CoreController
      *  2- if the form is valid -> the new user is added to the database
      *     if the form is not valid -> the user is redirected to the register page
      */
-    public function addNewUser()
+    public function newUserAction()
     {
         if (SRequest::getInstance()->post() )
         {
-            $error = $this->registerValidation();
+            $error = $this->registerValidation(SRequest::getInstance()->post());
 
             if (empty($error))
             {
-                $manager = new UserManager();
-
                 try {
+                    $manager = new UserManager();
 
-                    if ($manager->addUser())
+                    if ($manager->addUser(SRequest::getInstance()->post()))
                     {
-                        $_SESSION['msg']['succes'] = 'Merci de vous etre inscrit, vous pouvez desormer vous connecter';
-                        // require('home/login.php');
-                        return $this->render($this->getController(),'profile', []);
+                        $_SESSION['msg']['succes'] = 'Votre profil a été enregistré avec succès!';
+                        // renvoi sur la page du login ou sur profile? si profile, faire login auto
+                        return $this->render($this->getController(),'login', []);
                     }
                 } catch (\Exception $e) {
                     echo 'Une erreur s\'est produite: ' . $e->getMessage(); // echo pour le moment mais il faudra le gerer comme il faut plus tard
@@ -201,13 +209,11 @@ class UserController extends CoreController
             }
             else
             {
-                // require('home/register.php');
                 return $this->render($this->getController(),'register', []);
             }
         }
         else
         {
-            // require('home/register.php');
             return $this->render($this->getController(),'register', []);
         }
     }
@@ -231,23 +237,33 @@ class UserController extends CoreController
     /**
      * User logout
      */
-    public function logout()
+    public function logoutAction()
     {
-        unset($_SESSION['token']);
+        session_unset();
+        session_destroy();
         $this->render($this->getController(),'default', []);
     }
 
 
-// A terminer (dessous)
 
-//    public function deleteUser()
-//    {
-//
-//    }
-//
-//    public function UpdateUser()
-//    {
-//
-//    }
+
+// A terminer (ci-dessous)
+
+    /**
+     *
+     */
+    public function UpdateAction()
+    {
+        $this->render($this->getController(),'update', []);
+    }
+
+    /**
+     *
+     */
+    public function deleteUser()
+    {
+
+    }
+
 } // End of class
 

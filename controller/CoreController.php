@@ -41,8 +41,7 @@ class CoreController
         {
            return  require($viewPath);
         }
-
         return 'fichier inexistant';
-
     }
+
 }

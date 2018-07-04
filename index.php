@@ -6,16 +6,19 @@ namespace dndcompany\galaxseed;  // namespace de base du projet
 use Exception;
 use dndcompany\galaxseed\model\SRequest;
 
+
+
 require ('config.php');
 require ('Autoloader.php');
-Autoloader::register();         // appel l'autoloader
-
+Autoloader::register();         // autoload
+session_start();                // Start autoload after autoload to avoid having to serialize/unserialize
 
 /**
  * --------------------------------------------------
  * ROUTER
  * --------------------------------------------------
  */
+
 
 try
 {
@@ -42,13 +45,16 @@ try
           $method = 'defaultAction';                                      // Action par default
         }
 
-       // var_dump($oController, $method);
-
         if( method_exists( $oController, $method ) )                    // on check si la methode existe dans le controller
         {
-            require ('view/inc/header.html');
+
+           require ('view/inc/header.php');
+           // ob_start();
             $oController->$method();                                   // si la méthode exsiste, on l'appelle
-            require ('view/inc/footer.html');
+           // $test = ob_end_flush();
+           // var_dump($_SESSION);
+           require ('view/inc/footer.php');
+
         } else {
             throw new \Exception("la méthode $method n'existe pas.");
         }

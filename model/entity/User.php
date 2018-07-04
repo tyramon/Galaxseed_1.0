@@ -7,11 +7,16 @@ declare(strict_types=1);
  * Time: 10:19
  */
 
+namespace dndcompany\galaxseed\model\entity;
+
+
 class User
 {
     // rajouter sa capacity et ses authorizations
     private $id;
     private $login;
+    private $firstname;
+    private $lastname;
     private $password;
     private $email;
     private $registration_date;
@@ -34,14 +39,14 @@ class User
      */
     public function hydrate($data)
     {
-        // Removes the first two letters to match the method name
-        foreach ($data as $key => $val){
-
-            if (strpos($key, 'u_'))
+        foreach ($data as $key => $val){                    // Removes the first two letters to match the method name
+                                                            // Other solution would be to put aliases in sql query to clean up the name attributes
+            if (strpos($key, 'u_') == 0)
             {
-                $key = str_replace('u_', '', $key);
+               $key = str_replace('u_', '', $key);
             }
-            elseif (strpos($key, 'c_'))
+
+            if (strpos($key, 'c_') == 0 )
             {
                 $key = str_replace('c_', '', $key);
             }
@@ -61,20 +66,10 @@ class User
         }
     }
 
-    /*
-     *       METHODS
-     */
-
-
-
-    // methods here if needed
-
-
 
     /*
      *       SETTERS & GETTERS
      */
-
 
 
     /**
@@ -112,6 +107,38 @@ class User
     /**
      * @return mixed
      */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * @param mixed $firstname
+     */
+    public function setFirstname($firstname): void
+    {
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param mixed $lastname
+     */
+    public function setLastname($lastname): void
+    {
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPassword()
     {
         return $this->password;
@@ -144,7 +171,7 @@ class User
     /**
      * @return mixed
      */
-    public function getRegistrationDate()
+    public function getRegistration_date()
     {
         return $this->registration_date;
     }
@@ -152,7 +179,7 @@ class User
     /**
      * @param mixed $registration_date
      */
-    public function setRegistrationDate($registration_date): void
+    public function setRegistration_date($registration_date): void
     {
         $this->registration_date = $registration_date;
     }
@@ -160,7 +187,7 @@ class User
     /**
      * @return mixed
      */
-    public function getGameCount()
+    public function getGame_count()
     {
         return $this->game_count;
     }
@@ -168,7 +195,7 @@ class User
     /**
      * @param mixed $game_count
      */
-    public function setGameCount($game_count): void
+    public function setGame_count($game_count): void
     {
         $this->game_count = $game_count;
     }
@@ -176,7 +203,7 @@ class User
     /**
      * @return mixed
      */
-    public function getVictoryCount()
+    public function getVictory_count()
     {
         return $this->victory_count;
     }
@@ -184,7 +211,7 @@ class User
     /**
      * @param mixed $victory_count
      */
-    public function setVictoryCount($victory_count): void
+    public function setVictory_count($victory_count): void
     {
         $this->victory_count = $victory_count;
     }

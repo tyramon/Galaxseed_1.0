@@ -6,37 +6,41 @@
  * Time: 09:52
  */
 ?>
+<div class="message">
+    <?= empty($_SESSION['msg']['error']) ? '' : $_SESSION['msg']['error']; ?>
+</div>
+
 <h1>Incription</h1>
 
-    <form method="post" action="index.php?controller=user&action=newUser">
+<form method="POST" action="?controller=user&action=newUser">
 
-        <label for="identifiant">Votre pseudo : </label>
-        <input type="text" name="identifiant" id="identifiant">
+    <label for="login">Votre pseudo : </label>
+    <input type="text" name="login" id="login">
 
-        <label for="nom">Votre nom : </label>
-        <input type="text" name="nom" id="nom">
+    <label for="lastname">Votre nom : </label>
+    <input type="text" name="lastname" id="lastname">
 
-        <label for="prenom">Votre prénom</label>
-        <input type="text" name="prenom" id="prenom">
+    <label for="firstname">Votre prénom</label>
+    <input type="text" name="firstname" id="firstname">
 
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
 
-        <label for="passe">Votre mot de passe : </label>
-        <input type="password" name="passe" id="passe">
+    <label for="password">Votre mot de passe : </label>
+    <input type="password" name="password" id="password">
 
-        <label for="confirm">Confirmer votre mot de passe : </label>
-        <input type="password" name="confirm" id="confirm">
-        <?php
-        if (!empty($error)){
-            echo '<div class="error"><ul>';
-            foreach ($error as $key){
-                echo "<li>". $key."</li>";
-            }
-            echo "</ul></div>";
+    <label for="password_confirm">Confirmer votre mot de passe : </label>
+    <input type="password" name="password_confirm" id="password_confirm">
+    <?php
+    if (!empty($error)){
+        echo '<div class="error"><ul>';
+        foreach ($error as $key){
+            echo "<li>". $key."</li>";
         }
-        ?>
-        <input class="button" type="submit" value="valider">
-    </form>
-    <a class="button" href="?controller=home&action=default">Retour à l'accueil</a>
+        echo "</ul></div>";
+    }
+    ?>
+    <input class="button" type="submit" value="valider">
+</form>
+<a class="button" href="?controller=user&action=default">Retour</a>
 

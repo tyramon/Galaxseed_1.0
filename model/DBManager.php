@@ -191,23 +191,19 @@ class DBManager
     {
         // insert ex: INSERT INTO `table` (col1, col2, col3) VALUES (:val1, :val2, :val3)
 
-        if ($values){
+        if ($values) {
 
             $stmt = $this->getPdo()->prepare($sql);
 
-            foreach ($values as $placeholder => $value){
+            foreach ($values as $placeholder => $value) {
                 $stmt->bindValue($placeholder, $value);
             }
 
-            if ($stmt->execute()){
+            if ($stmt->execute()) {
                 return true;            // On retourne true si l'insert à fonctionné
-            } else {
-                throw new Exception('L\'ajout n\'a pas marché. (code erreur:'.$stmt->errorCode());
             }
-        } else {
-            $message = "Rien à inserer";
-            throw new Exception($message);
         }
+        return false;
     }
 
 

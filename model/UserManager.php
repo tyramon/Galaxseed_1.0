@@ -9,7 +9,8 @@ declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model;
 
-use User;
+use dndcompany\galaxseed\model\entity\User;
+use Exception;
 
 class UserManager
 {
@@ -53,7 +54,7 @@ class UserManager
      * @param int $email
      * @return User
      */
-    public function getUserByLogin(int $login)
+    public function getUserByLogin(string $login)
     {
         $sql = 'SELECT `user`.*, `capacity`.`c_name` 
                 FROM `user` 
@@ -62,19 +63,24 @@ class UserManager
 
         $data = DBManager::getInstance()->makeSelect($sql, ['login' => $login]);
 
-        return new User($data[0]);
+        if ($data){
+            return new User($data[0]);
+        } else {
+            throw new Exception('Utilisateur n\'existe pas');
+        }
     }
 
     /**
      * Check if the login isn't already taken
      * returns true if login is available
      * returns false if login is taken
+     * @param $login
      * @return bool
      */
-    public function loginIsAvailable() : bool
+    public function loginIsAvailable($login) : bool
     {
         $sql = "SELECT `u_login` FROM `user` WHERE `u_login`=:login";
-        $params = ['login' => SRequest::getInstance()->post('identifiant')];
+        $params = ['login' => $login];
         $rows =  DBManager::getInstance()->getRowCount($sql, $params);
 
         if ($rows<1){ return true; }
@@ -87,12 +93,13 @@ class UserManager
      * Check if the email isn't already exists
      * returns true if email doesn't exists
      * returns false if email is exists
+     * @param $email
      * @return bool
      */
-    public function emailIsAvailable(): bool
+    public function emailIsAvailable($email): bool
     {
         $sql = "SELECT `u_email` FROM `user` WHERE `u_email`=:email";
-        $params = ['email' => SRequest::getInstance()->post('email')];
+        $params = ['email' => $email];
         $rows = DBManager::getInstance()->getRowCount($sql, $params);
 
         if ($rows<1){ return true; }
@@ -102,17 +109,15 @@ class UserManager
 
 
     /**
-     *
+     * @param $user
+     * @return bool
      */
-    public function addUser()
+    public function addUser($user) : bool
     {
-        $sRequest = SRequest::getInstance();  // gets the user info for the Get/Post Request
-
-
         $sql = "INSERT INTO `user` (
                   `u_login`, 
-                  `u_nom`, 
-                  `u_prenom`, 
+                  `u_lastname`, 
+                  `u_firstname`, 
                   `u_password`, 
                   `u_email`, 
                   `u_registration_date`, 
@@ -122,14 +127,14 @@ class UserManager
                   `c_id`, 
                   `g_id`, 
                   `s_id`)
-                VALUES (:login, :nom, :prenom, :psw, :email, :register, :gamecount, :victory, :log, :role, :game, :news)";
+                VALUES (:login, :lastname, :firstname, :pwd, :email, :register, :gamecount, :victory, :log, :role, :game, :news)";
 
         $params = [
-            'login' => $sRequest->post('identifiant'),
-            'nom' => $sRequest->post('nom'),
-            'prenom' => $sRequest->post('prenom'),
-            'psw' => password_hash($sRequest->post('passe'), PASSWORD_BCRYPT),
-            'email' => $sRequest->post('email'),
+            'login' => $user['login'],
+            'lastname' => $user['lastname'],
+            'firstname' => $user['firstname'],
+            'pwd' => password_hash($user['password'], PASSWORD_BCRYPT),
+            'email' => $user['email'],
             'register' => date("Y-m-j"),
             'gamecount' => NULL,
             'victory' => NULL,
@@ -139,7 +144,11 @@ class UserManager
             'news' => NULL
         ];
 
-        DBManager::getInstance()->makeInsert($sql, $params);
+        if (DBManager::getInstance()->makeInsert($sql, $params))
+        {
+            return true;
+        }
+        return false;
     }
 
     public function updateUser() : bool
