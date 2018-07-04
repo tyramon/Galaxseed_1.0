@@ -53,24 +53,6 @@ class UserController extends CoreController
         $this->render($this->getController(),'login', []);
     }
 
-//
-//    /**
-//     * Redirects user to his profile page
-//     */
-//    public function profile()
-//    {
-//        if ($this->isAuth())
-//        {
-//            // require('home/profile.php');
-//           return $this->render($this->getController(),'profile', []);
-//        }
-//        else
-//        {
-//            // require('home/default.php');
-//           return $this->render($this->getController(),'default', []);
-//        }
-//    }
-
 
     /**
      * Redirects user to the register page
