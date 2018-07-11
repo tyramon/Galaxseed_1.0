@@ -1,0 +1,101 @@
+/*
+    FONTS
+*/
+
+@font-face {
+    font-family: 'Super Mario 256';
+    src: url('fonts/SuperMario256.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Rammetto One';
+    src: url('fonts/RammettoOne-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    background: linear-gradient(#03a69b, #113852);
+    background-position: center;
+    background-size: cover;
+}
+
+header {
+    height: 10vh;
+    background-color: rgba(17, 56, 82, 0.4);
+    color: white;
+}
+
+
+
+.button {
+    display: block;
+    box-sizing: border-box;
+
+    width: fit-content;
+    height: 30px;
+
+    padding: 3px 10px;
+    margin: 5px;
+
+    border: none;
+    border-radius: 3px;
+
+    background-color: #0f1c9e;
+
+    color: white;
+    text-decoration: none;
+    line-height: 1.6em;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    margin-bottom: 20px;
+}
+
+.form-group > input {
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+}
+
+.message {
+    height: 20px;
+}
+
+.message p {
+    margin: 0;
+}
+
+.invalid-input {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0.7);
+    color: white;
+    border-radius: 3px;
+}
+
+.valid-input {
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(40, 168, 42, 0.7);
+    color: white;
+    border-radius: 3px;
+}

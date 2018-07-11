@@ -26,12 +26,8 @@ class GameController
         $hero=new Hero($heroData);
         $hero->setCardsInDeck($heroDeck);
 
+
         return $hero;
-//        $heroManager= new HeroManager();
-//        $heroData2=$heroManager->heroData(2);
-//        $heroDeck2=$heroManager->GetDeck(2);
-//        $hero2=new Hero($heroData2);
-//        $hero2->setCardsInDeck($heroDeck2);
     }
 
 
@@ -45,6 +41,19 @@ class GameController
         $heroManager= new HeroManager();
         $heroData=$heroManager->heroDataGame($idHero);
         return $heroData;
+    }
+
+    // Set toutes les zones de jeu en une fois dans l'objet Hero
+    // Récupere tout le contenu du deck, du plateau et de la main a partir de la base de données
+    // A appeler après chaque rechargement de page
+    public function setAllZone(Hero $hero)
+    {
+        $heroManager=new HeroManager();
+
+        $hero->setCardsInDeck($heroManager->getDeck($hero->getId()));
+        $hero->setCardsOnBoard($heroManager->getBoard($hero->getId()));
+        $hero->setCardsInHand($heroManager->getHand($hero->getId()));
+
     }
 
 

@@ -16,7 +16,6 @@ class CoreController
     {
     }
 
-
     /**
      * Renders the home (aka makes a require() of the appropriate vue and extract() the variables(params))
      * @param string $controllerName

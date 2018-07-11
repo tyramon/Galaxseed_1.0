@@ -1,0 +1,50 @@
+
+h1
+{
+    text-align: center;
+}
+
+form
+{
+    display: flex;
+    flex-direction: column;
+}
+
+form > div
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+}
+
+.diskor, .reine
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 10rem;
+    height: auto;
+    font-size: 1.5rem;
+}
+
+.diskor img, .reine img
+{
+    width: 25rem;
+    height: auto;
+}
+
+.hidden
+{
+    display: none;
+}
+
+input[type="radio"]:checked + label
+{
+    border: red 1px solid;
+    background-color: grey;
+}
+
+
+

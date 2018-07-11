@@ -6,11 +6,8 @@
  * Time: 14:19
  */
 declare(strict_types=1);
-
 namespace dndcompany\galaxseed\model;
-
 use dndcompany\galaxseed\model\entity\User;
-use Exception;
 
 class UserManager
 {
@@ -25,33 +22,26 @@ class UserManager
                 FROM `user` 
                 JOIN `capacity` ON `user`.`c_id` = `capacity`.`c_id` 
                 WHERE `user`.`u_id` = :id';
-
         $data = DBManager::getInstance()->makeSelect($sql, ['id' => $id]);
-
         return new User($data[0]);
     }
-
-
     /**
      * Gets User object by the email
-     * @param int $email
+     * @param string $email
      * @return User
      */
-    public function getUserByEmail(int $email)
+    public function getUserByEmail(string $email)
     {
         $sql = 'SELECT `user`.*, `capacity`.`c_name` 
                 FROM `user` 
                 JOIN `capacity` ON `user`.`c_id` = `capacity`.`c_id` 
                 WHERE `user`.`u_email` = :id';
-
         $data = DBManager::getInstance()->makeSelect($sql, ['email' => $email]);
-
         return new User($data[0]);
     }
-
     /**
      * Gets User object by the login
-     * @param int $email
+     * @param string $login
      * @return User
      */
     public function getUserByLogin(string $login)
@@ -60,16 +50,10 @@ class UserManager
                 FROM `user` 
                 JOIN `capacity` ON `user`.`c_id` = `capacity`.`c_id` 
                 WHERE `user`.`u_login` = :login';
-
         $data = DBManager::getInstance()->makeSelect($sql, ['login' => $login]);
 
-        if ($data){
-            return new User($data[0]);
-        } else {
-            throw new Exception('Utilisateur n\'existe pas');
-        }
+        return new User($data[0]);
     }
-
     /**
      * Check if the login isn't already taken
      * returns true if login is available
@@ -82,13 +66,9 @@ class UserManager
         $sql = "SELECT `u_login` FROM `user` WHERE `u_login`=:login";
         $params = ['login' => $login];
         $rows =  DBManager::getInstance()->getRowCount($sql, $params);
-
         if ($rows<1){ return true; }
-
         return false;
     }
-
-
     /**
      * Check if the email isn't already exists
      * returns true if email doesn't exists
@@ -101,13 +81,9 @@ class UserManager
         $sql = "SELECT `u_email` FROM `user` WHERE `u_email`=:email";
         $params = ['email' => $email];
         $rows = DBManager::getInstance()->getRowCount($sql, $params);
-
         if ($rows<1){ return true; }
-
         return false;
     }
-
-
     /**
      * @param $user
      * @return bool
@@ -128,7 +104,6 @@ class UserManager
                   `g_id`, 
                   `s_id`)
                 VALUES (:login, :lastname, :firstname, :pwd, :email, :register, :gamecount, :victory, :log, :role, :game, :news)";
-
         $params = [
             'login' => $user['login'],
             'lastname' => $user['lastname'],
@@ -143,26 +118,22 @@ class UserManager
             'game' => NULL,
             'news' => NULL
         ];
-
         if (DBManager::getInstance()->makeInsert($sql, $params))
         {
             return true;
         }
         return false;
     }
-
     public function updateUser() : bool
     {
         // Update user info
         // needs : user id, info to update
         // return true/false
     }
-
     public function deleteUser() : bool
     {
         // delete user account
         // needs user id
         // returns true/false
     }
-
 } // End of class

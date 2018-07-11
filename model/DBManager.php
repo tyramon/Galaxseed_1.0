@@ -1,17 +1,11 @@
 <?php
 declare(strict_types=1);
-
 namespace dndcompany\galaxseed\model;
-
-
 use PDO, PDOException, PDOStatement, Exception;
-
-
 class DBManager
 {
     protected $pdo;
     private static $instance;
-
     private function __construct() {
         try {
             $this->pdo = new PDO('mysql:host=' . DBHOST . ';dbname=' . DBNAME . ';charset=utf8', DBUSER, DBPSW, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
@@ -19,7 +13,6 @@ class DBManager
             die($e->getMessage());
         }
     }
-
     /**
      * Singleton pour récuperer l'instance de ma propre classe
      *
@@ -29,11 +22,8 @@ class DBManager
         if(self::$instance == null) {
             self::$instance = new DBManager();
         }
-
         return self::$instance;
     }
-
-
     /**
      * @return PDO
      */
@@ -41,16 +31,11 @@ class DBManager
     {
         return $this->pdo;
     }
-
-
-
     /*
     *
     *       DB INTERACTIONS
     *
     */
-
-
     /**
      *
      * Generates a PDOStatement using query or prepare, depending on $params composition
@@ -64,17 +49,13 @@ class DBManager
      * @throws Exception
      */
     public function makeStatement(string $sql, array $params = array()) : PDOStatement {
-
         if(!$params) {
             $statement = $this->pdo->query($sql);
-
             if($statement === false) {
                 $message = "query n'a pas marché";
-
                 if(DEBUG == 'DEV') {
                     $message .= ' query : '.$sql;
                 }
-
                 throw new Exception($message);
             }
         } elseif(($statement = $this->pdo->prepare($sql)) !== false) {
@@ -84,28 +65,19 @@ class DBManager
                     if(DEBUG == 'DEV') {
                         $message .= ' query : '.$sql.' --- Param : '.implode('->', $params);
                     }
-
                     throw new Exception($message);
                 }
             }
-
             if(!$statement->execute()) {
                 $message = "execute n'a pas marché";
-
                 if(DEBUG == 'DEV') {
                     $message .= ' query : '.$sql.' --- Param : '.implode('->', $params);
                 }
-
                 throw new Exception($message);
             }
         }
-
         return $statement;
     }
-
-
-
-
     /**
      *
      * Specialisation of MakeStatement for SELECT queries
@@ -125,30 +97,18 @@ class DBManager
      */
     public function makeSelect($sql, $params = array(), $fetchStyle = PDO::FETCH_ASSOC, $fetchArg = NULL)
     {
-
         $statement = $this->makeStatement($sql, $params);
-
         $data = isset($fetchArg) ? $statement->fetchAll($fetchStyle, $fetchArg) : $statement->fetchAll($fetchStyle);
         $statement->closeCursor();
-
         return $data;
-
     }
-
     public function getRowCount($sql, $params = array()) : int
     {
-
         $statement = $this->makeStatement($sql, $params);
-
         $data =  $statement->rowCount();
         $statement->closeCursor();
-
         return $data;
     }
-
-
-
-
     /**
      * @param string $sql
      * @param array $params
@@ -158,25 +118,19 @@ class DBManager
         if (!$params) {
             $stm = $this->pdo->query($sql);
             $stm -> execute();
-
             if ($stm === false) {
-
                 $message = "query n'a pas marché";
                 throw new Exception($message);
             }
         } else {
             $stm = $this->pdo->prepare($sql);
-
             foreach($params as $placeholder => $variable)
             {
                 $stm->bindValue($placeholder, $variable);
             }
-
             $stm->execute();
         }
     }
-
-
     /**
      *
      * Makes insert in the database
@@ -190,21 +144,15 @@ class DBManager
     public function makeInsert(string $sql, array $values) : bool
     {
         // insert ex: INSERT INTO `table` (col1, col2, col3) VALUES (:val1, :val2, :val3)
-
         if ($values) {
-
             $stmt = $this->getPdo()->prepare($sql);
-
             foreach ($values as $placeholder => $value) {
                 $stmt->bindValue($placeholder, $value);
             }
-
             if ($stmt->execute()) {
                 return true;            // On retourne true si l'insert à fonctionné
             }
         }
         return false;
     }
-
-
 } // end of class

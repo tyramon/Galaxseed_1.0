@@ -40,7 +40,6 @@ class HeroManager
     {
         $sql='SELECT ht_id AS id, ht_name AS name, ht_health_point AS healthPoints, ht_mana_count AS manaCount, ht_board AS board, ih_id AS illustration FROM hero_template WHERE ht_id=:id';
         $dataHero=DBManager::getInstance()->makeSelect($sql, ['id'=>$id]);
-
         return $dataHero[0];
     }
 
@@ -69,7 +68,7 @@ class HeroManager
      */
     public function GetDeck(int $idHero) : array
     {
-        $sql='SELECT * FROM card_game1 WHERE ht_id=:id AND l_id=1';
+        $sql='SELECT ct_id AS id, ct_name AS name, ct_health_point AS hp, ct_attack AS attack, ct_mana AS mana, ct_shield AS shield, t_id AS type, ct_description AS description, ht_id AS hero, s_id AS status, ic_id AS illustration, l_id AS location FROM card_game1 WHERE ht_id=:id AND l_id=1';
         $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
 
         $deck=array();
@@ -77,7 +76,7 @@ class HeroManager
         {
             $deck[]=new Card($card);
         }
-
+        shuffle($deck);
         return $deck;
     }
 
@@ -88,7 +87,7 @@ class HeroManager
      */
     public function getHand(int $idHero) : array
     {
-        $sql='SELECT * FROM card_game1 WHERE ht_id=:id AND l_id=2';
+        $sql='SELECT ct_id AS id, ct_name AS name, ct_health_point AS hp, ct_attack AS attack, ct_mana AS mana, ct_shield AS shield, t_id AS type, ct_description AS description, ht_id AS hero, s_id AS status, ic_id AS illustration, l_id AS location, ct_attack_count AS attackCount FROM card_game1 WHERE ht_id=:id AND l_id=2';
         $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
 
         $hand=array();
@@ -101,7 +100,7 @@ class HeroManager
 
     public function getBoard(int $idHero) : array
     {
-        $sql='SELECT ct_id AS id, ct_name AS name, ct_health_point AS hp, ct_attack AS attack, ct_mana AS mana, ct_shield AS shield, t_id AS type, ct_description AS description, ht_id AS hero, s_id AS status, ic_id AS illustration, l_id AS location FROM card_game1 WHERE ht_id=:id AND l_id=3';
+        $sql='SELECT ct_id AS id, ct_name AS name, ct_health_point AS hp, ct_attack AS attack, ct_mana AS mana, ct_shield AS shield, t_id AS type, ct_description AS description, ht_id AS hero, s_id AS status, ic_id AS illustration, l_id AS location, ct_attack_count AS attackCount FROM card_game1 WHERE ht_id=:id AND l_id=3';
         $data=DBManager::getInstance()->makeSelect($sql,['id'=>$idHero]);
 
         $board=array();
@@ -123,4 +122,8 @@ class HeroManager
 
     }
 
+//    public function getDiscard(int $idHero): array
+//    {
+//
+//    }
     }

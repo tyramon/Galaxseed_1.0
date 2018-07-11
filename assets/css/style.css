@@ -1,0 +1,60 @@
+.plateau
+{
+    background: url("../images/fond.png") no-repeat;
+
+}
+
+img
+{
+    width: 150px;
+    height: auto;
+}
+
+.main_joueur
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+    height: 200px;
+
+}
+
+.plateau_joueur
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+
+}
+
+.main_adversaire
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+
+}
+
+.plateau_adversaire
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+
+}
+.carte
+{
+    width: 150px;
+    height: 300px;
+}

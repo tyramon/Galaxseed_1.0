@@ -92,11 +92,6 @@ class Hero
         return false;
     }
 
-    public function discard()
-    {
-        // la carte disparais du board
-        // change card $location to 'discard' (l_id=4)
-    }
 
     public function playCard(Card $card, Hero $hero): void   // method formerly known as invoke()
     {
@@ -105,6 +100,7 @@ class Hero
 
         $card->setLocation(3);
         $hero->setCardsOnBoard([$card]);
+
         $hero->setManaCount($hero->getManaCount()-$card->getMana());
 
         $heromanager=new HeroManager();
@@ -116,12 +112,6 @@ class Hero
 
     }
 
-    public function selectCardToPlay()
-    {  // selectCard
-        // on choisie une carte pour agir avec!
-        // pouvoir choisir une des cartes qui sont dans la main (passer $cardsInHands en param et l'id
-        // de la carte qu'on veut choisir)
-    }
 
     public function castSpellShield()  // optional method.
     {

@@ -72,7 +72,6 @@ class UserController extends CoreController
      */
     public function registerValidation($postData) : array
     {
-        var_dump($postData);
         $error = [];
 
         if (!empty($postData['login']) &&
@@ -87,19 +86,19 @@ class UserController extends CoreController
 
             // Login validation
             if (!preg_match('/^[a-zA-Z0-9_]+$/', $postData['login'])){
-                $error[] = "Ce pseudo n\'est pas valide.";
+                $error[] = "Ce pseudo n'est pas valide.";
             } elseif ($loginAvailable == false) {
-                $error[] = 'L\'identifiant est déjà utilisé.';
+                $error[] = "L'identifiant est déjà utilisé.";
             }
 
             // lastname validation
             if (!preg_match('/^[a-zA-Z_]+$/', $postData['lastname'])){
-                $error[] = "Le format du nom n\'est pas un format valide";
+                $error[] = "Le format du nom n'est pas un format valide";
             }
 
             // firstname validation
             if (!preg_match('/^[a-zA-Z_]+$/', $postData['firstname'])) {
-                $error[] = "Le format du prénom n\'est pas un format valide";
+                $error[] = "Le format du prénom n'est pas un format valide";
             }
 
             // email validation
@@ -124,41 +123,83 @@ class UserController extends CoreController
 
 
     /**
+     * Checks if the login exists in the database and if the passwords match
+     * returns true if the login is good / false if it's not
+     * @return bool
+     */
+    public function validateLogin() : bool
+    {
+        $manager = new UserManager();
+
+        if ($manager->loginIsAvailable(SRequest::getInstance()->post('login')))
+        {
+            return false;
+        }
+        else
+        {
+            $user = $manager->getUserByLogin(SRequest::getInstance()->post('login'));
+            if (password_verify(SRequest::getInstance()->post('psw'),$user->getPassword()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
      * Checks if user exists
      * Compares the password entered by the user in the form and the password in the database
      */
     public function connexionAction(){
 
-        if (array_key_exists('login',SRequest::getInstance()->post()) && !empty(SRequest::getInstance()->post('login')))
+        if (!empty(SRequest::getInstance()->post('login')) && !empty(SRequest::getInstance()->post('psw')))
         {
-            try {
-                $manager = new UserManager();
-                $user = $manager->getUserByLogin(SRequest::getInstance()->post('login'));
-
-            }
-            catch (\Exception $e)
+            if($this->validateLogin())
             {
-                echo 'Message d\'erreur : ' . $e->getMessage();
-            }
+                try {
+                    $manager = new UserManager();
+                    $user = $manager->getUserByLogin(SRequest::getInstance()->post('login'));
 
-            var_dump(SRequest::getInstance()->post());
-            if ($user !== false && password_verify(SRequest::getInstance()->post('psw'),$user->getPassword()))
-            {
-                $_SESSION['token'] = $user;
-                $_SESSION['user'] = $user;
+                    $_SESSION['token'] = $user;
+                    $_SESSION['user'] = $user;
 
-                return $this->render($this->getController(),'profile', []);
+                    $errorMessage = 'Bienvenue ' . $user->getFirstname();
+                    $errorClass = 'valid-input';
+
+                    return $this->render($this->getController(),'profile', [
+                        'errorMessage' => $errorMessage,
+                        'errorClass' => $errorClass
+                    ]);
+
+                }
+                catch (\Exception $e)
+                {
+                    $eMessage = 'Message d\'erreur : ' . $e->getMessage();
+                    return $this->render('error','404', ['eMessage' => $eMessage]);             // Faire un controller pour les exceptions qui renvoit a une page 404 ou autre
+                }
             }
             else
             {
-                $_SESSION['msg']['error'] = 'Login ou mot de passe incorrect';
-                return $this->render($this->getController(),'default', []);
+                $errorMessage = 'Login ou mot de passe incorrect';
+                $errorClass = 'invalid-input';
+
+                return $this->render($this->getController(),'default', [
+                    'errorMessage' => $errorMessage,
+                    'errorClass' => $errorClass,
+                ]);
             }
         }
         else
         {
-            $_SESSION['msg']['error'] = 'Veuillez entrer un login';
-            return $this->render($this->getController(),'default', []);
+            $errorMessage = 'Veuillez entrer un login';
+            $errorClass = 'invalid-input';
+
+            return $this->render($this->getController(),'default', [
+                'errorMessage' => $errorMessage,
+                'errorClass' => $errorClass
+            ]);
         }
     }
 
@@ -182,9 +223,12 @@ class UserController extends CoreController
 
                     if ($manager->addUser(SRequest::getInstance()->post()))
                     {
-                        $_SESSION['msg']['succes'] = 'Votre profil a été enregistré avec succès!';
-                        // renvoi sur la page du login ou sur profile? si profile, faire login auto
-                        return $this->render($this->getController(),'login', []);
+                        $errorMessage = 'Votre profil a été enregistré avec succès!';
+                        $errorClass = 'valid-input';
+                        return $this->render($this->getController(),'default', [
+                            'errorMessage' => $errorMessage,
+                            'errorClass' => $errorClass
+                        ]);
                     }
                 } catch (\Exception $e) {
                     echo 'Une erreur s\'est produite: ' . $e->getMessage(); // echo pour le moment mais il faudra le gerer comme il faut plus tard
@@ -192,15 +236,14 @@ class UserController extends CoreController
             }
             else
             {
-                return $this->render($this->getController(),'register', []);
+                return $this->render($this->getController(),'register', [
+                    'user' =>SRequest::getInstance()->post(),
+                    'errorMessage' => $error,
+                    'errorClass' => 'invalid-input'
+                    ]);
             }
         }
-        else
-        {
-            return $this->render($this->getController(),'register', []);
-        }
     }
-
 
     /**
      * User authentification

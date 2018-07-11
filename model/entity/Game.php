@@ -1,5 +1,5 @@
 <?php
-declare(strict_type=1);
+declare(strict_types=1);
 
 namespace dndcompany\galaxseed\model\entity;
 
@@ -11,6 +11,8 @@ class Game
     private $roundGame;
     private $idPlayer1;
     private $idPlayer2;
+    private $idHeroPlayer1;
+    private $idHeroPlayer2;
     private $manaPool;
 
 
@@ -150,6 +152,38 @@ class Game
     public function setManaPool( int $manaPool): void
     {
         $this->manaPool = $manaPool;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdHeroPlayer1()
+    {
+        return $this->idHeroPlayer1;
+    }
+
+    /**
+     * @param mixed $idHeroPlayer1
+     */
+    public function setIdHeroPlayer1($idHeroPlayer1): void
+    {
+        $this->idHeroPlayer1 = $idHeroPlayer1;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdHeroPlayer2()
+    {
+        return $this->idHeroPlayer2;
+    }
+
+    /**
+     * @param mixed $idHeroPlayer2
+     */
+    public function setIdHeroPlayer2($idHeroPlayer2): void
+    {
+        $this->idHeroPlayer2 = $idHeroPlayer2;
     }
 
 

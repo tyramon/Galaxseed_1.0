@@ -19,6 +19,8 @@ class Card
     private $hero;
     private $illustration;
     private $type;
+    private $description;
+    private $attackCount;
 
 
     public function __construct(array $cardData)
@@ -40,23 +42,6 @@ class Card
         }
     }
 
-
-    // Attaquer un joueur
-    public function actionAttack(Card $cible): void{
-
-            $degats = $this->getAttack();
-            $cible->receiveDamage($degats);
-
-    }
-
-    // la carte recoit des degats
-    public function receiveDamage(int $degat){
-        $this->setHp($this->getHp() - $degat);
-        if($this->getHp() <= 0){
-            //defauser la carte
-            $this->setLocation(4);
-        }
-    }
 
     /**
      * @return mixed
@@ -232,6 +217,38 @@ class Card
     public function setIllustration($illustration)
     {
         $this->illustration = $illustration;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAttackCount()
+    {
+        return $this->attackCount;
+    }
+
+    /**
+     * @param mixed $attackCount
+     */
+    public function setAttackCount($attackCount): void
+    {
+        $this->attackCount = $attackCount;
     }
 
 

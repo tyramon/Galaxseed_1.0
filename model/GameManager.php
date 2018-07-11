@@ -11,20 +11,33 @@ class GameManager
         return $data;
     }
 
-    public function initGameRecord()
+    // intialiation de la partie dans la db
+    public function initGame(int $idPlayer1, int $idHero1, int $idPlayer2, int $idHero2)
     {
-        // intialiation de la partie dans la db
+        $sql='INSERT INTO game VALUES (NULL, NOW(), 1, :player1, :hero1, :player2, :hero2)';
+        DBManager::getInstance()->makeStatement($sql, ['player1'=>$idPlayer1, 'hero1'=>$idHero1, 'player2'=>$idPlayer2, 'hero2'=>$idHero2]);
     }
 
-    public function updateGameRecord(int $id)
+    public function startGame(int $idPlayer1)
     {
-        // mise a jour des infos sur le status de la partie
+        // A finir bordel
+
+        $sql='Select g_id AS id, g_date AS dateCreate, g_round_count AS roundGame, u_id_p1 AS idPlayer1, hg_id_p1 AS idHeroPlayer1, u_id_p2 AS idPlayer2, hg_id_p2 AS idHeroPlayer2 FROM game WHERE u_id_p1=:idPlayer1';
+        $data =DBManager::getInstance()->makeSelect($sql, ['idPlayer1'=>$idPlayer1]);
+
+        return $data[0];
     }
 
-    public function deleteGameRecord()
-    {
-        // (a voir)
-    }
+//    public function updateGame(int $idGame)
+//    {
+//
+//        // mise a jour des infos sur le status de la partie
+//    }
+
+//    public function deleteGame()
+//    {
+//        // (a voir)
+//    }
 
 
     public function initHeroGame()
