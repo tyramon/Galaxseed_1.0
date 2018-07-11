@@ -16,8 +16,8 @@ var_dump($_SESSION);
                 <input id="login" type="text" name="login" value="">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" type="password" name="password" value="">
+                <label for="psw">Password</label>
+                <input id="psw" type="password" name="psw" value="">
             </div>
             <div class="form-group">
                 <input type="submit" value="connexion">

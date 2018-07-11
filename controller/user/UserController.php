@@ -72,6 +72,7 @@ class UserController extends CoreController
      */
     public function registerValidation($postData) : array
     {
+        var_dump($postData);
         $error = [];
 
         if (!empty($postData['login']) &&
@@ -139,9 +140,9 @@ class UserController extends CoreController
             {
                 echo 'Message d\'erreur : ' . $e->getMessage();
             }
-            
 
-            if ($user !== false && password_verify(SRequest::getInstance()->post('password'),$user->getPassword()))
+            var_dump(SRequest::getInstance()->post());
+            if ($user !== false && password_verify(SRequest::getInstance()->post('psw'),$user->getPassword()))
             {
                 $_SESSION['token'] = $user;
                 $_SESSION['user'] = $user;
