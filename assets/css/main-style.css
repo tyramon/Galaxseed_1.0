@@ -63,6 +63,7 @@ header
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 25vh;
 }
 
 .logo {
@@ -75,6 +76,25 @@ header
     width: 20%;
     height: auto;
     padding: 40px;
+}
+
+.logo img:hover{
+    animation: scale-in-out 2.5s ease-in-out infinite;
+}
+
+@keyframes scale-in-out {
+    25%{
+        width: 19%;
+    }
+
+    50%{
+        width: 20%;    }
+
+    75%{
+        width: 19%;    }
+
+    100%{
+        width: 20%;    }
 }
 
 .container {
@@ -133,7 +153,6 @@ footer p
     height: auto;
     align-self: flex-end;
 }
-
 
 /* Register form */
 
