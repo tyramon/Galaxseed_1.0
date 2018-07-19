@@ -33,7 +33,7 @@ class CoreController
             extract($params);
         }
 
-        $viewPath = 'controller\\' . $controller . DS . 'view' . DS . $view . '.php';
+        $viewPath = 'controller'.DS. $controller . DS . 'view' . DS . $view . '.php';
 
         // exemple de chemin: dndcompany/galaxseed/controller/user/home/default.php
         if (file_exists($viewPath))

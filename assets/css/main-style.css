@@ -3,15 +3,15 @@
 */
 
 @font-face {
-    font-family: 'Super Mario 256';
-    src: url('assets/fonts/SuperMario256.ttf') format('truetype');
+    font-family: 'SuperMario';
+    src: url('../../assets/fonts/SuperMario256.ttf');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Rammetto One';
-    src: url('assets/fonts/RammettoOne-Regular.ttf') format('truetype');
+    src: url('../../assets/fonts/Rammetto_One/RammettoOne-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -26,24 +26,33 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    height: 100vh;
     background: linear-gradient(to bottom, #10324e, #047b95);
     background-position: center;
     background-size: cover;
 }
 
-body
-{
+body{
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.container
+.button-link
 {
-   position: relative;
-    height: 100vh;
+    display: block;
+    margin: 10px auto;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-size: 0.8rem;
 }
+
+.button-link:hover
+{
+    text-decoration: underline;
+}
+
 
 /*
     HEADER
@@ -54,13 +63,24 @@ header
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 15vh;
 }
 
-.logo
+.logo {
+    display: block;
+    text-align: center;
+}
+
+.logo img
 {
-    width: 10%;
+    width: 20%;
     height: auto;
+    padding: 40px;
+}
+
+.container {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
 }
 
 /*
@@ -72,17 +92,16 @@ footer
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
-    height: 7vh;
     background-color: black;
     color: white;
-     font-size: 0.7rem;
+    font-size: 0.7rem;
 }
 
 footer img
 {
-    width: 15%;
+    width: 10%;
     height: auto;
-    padding: 5px 15px;
+    padding: 15px;
     align-self: center;
 }
 
@@ -98,43 +117,106 @@ footer p
     HOMEPAGE CSS
 */
 
-.diskor
+.diskor-home
 {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    grid-column: 5 / 7;
+    align-self: flex-end;
+    justify-self: flex-end;
+    width: 95%;
+    height: auto;
 }
 
-.reine-sadidas
+.reine-sadidas-home
 {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40%;
+    grid-column: 1 / 3;
+    width: 98%;
+    height: auto;
+    align-self: flex-end;
 }
 
-.login-link
-{
-    display: block;
-    color: white;
-    text-decoration: none;
-    text-align: center;
-    padding: 10px 20px;
-}
 
 /* Register form */
 
-.register-div
+.form-div
 {
-    width: 50%;
-    margin: auto;
+    grid-column: 3 / 5;
+    align-self: center;
+    color: white;
+    margin-bottom: 5vh;
 }
 
-.register-div > form
+.form-div > form
 {
     background-color: #231e4a;
     border-radius: 10px;
 }
+
+.form-div h2
+{
+    font-family: "Rammetto One";
+    text-align: center;
+}
+
+.form-div input
+{
+    width: 90%;
+    margin: 7px auto;
+    height: 40px;
+    border: none;
+    border-radius: 2px;
+    padding-left: 10px;
+}
+
+.form-div input:first-child{
+    margin-top: 10px;
+}
+
+.register-button, .login-button
+{
+    background: none;
+    color: #fff;
+    font-family: "Rammetto One";
+    font-size: 1.5rem;
+}
+
+.register-button:hover
+{
+    cursor: pointer;
+}
+
+
+/*
+*     FORM NOTIFICATIONS
+*/
+
+.message
+{
+    margin: 10px 0;
+    padding: 5px 10px;
+    border-radius: 2px;
+    text-align: center;
+    animation: fade 0.3s forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fade {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+.valid-input
+{
+    background-color: green;
+}
+
+.invalid-input
+{
+    background-color: red;
+}
+
+
 
 
 

@@ -11,5 +11,5 @@
 </head>
 <body>
 <header>
-    <img class="logo" src="assets/images/website/logo.png" alt="Galaxseed logo">
+    <a class="logo" href="?controller=home&action=default"><img src="assets/images/website/logo.png" alt="Galaxseed logo"></a>
 </header>

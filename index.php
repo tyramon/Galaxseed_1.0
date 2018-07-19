@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace dndcompany\galaxseed;  // namespace de base du projet
+namespace dndcompany\galaxseed;  // Project base namespace
 
 use Exception;
 use dndcompany\galaxseed\model\SRequest;
@@ -30,8 +30,9 @@ try
             $ctrl = 'Home';                                        // si pas de param 'controller'-> ctrler par default = Home
         }
 
-    $controller = CONTROLLER_PATH . strtolower($ctrl) . '\\' . $ctrl . 'Controller';  // nom de la classe
+    $controller = CONTROLLER_PATH . strtolower($ctrl) . DS . $ctrl . 'Controller';  // nom de la classe
 
+    $controller = str_replace(DS, '\\', $controller); // conversion du chemin du fichier en namespace pour trouver le controller
 
     if( class_exists( $controller ) )
     {

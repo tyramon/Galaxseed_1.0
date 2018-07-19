@@ -20,7 +20,7 @@ define( 'DEBUG', true );
 CONST DBUSER = 'root';
 CONST DBNAME = 'galaxseed';
 CONST DBHOST = 'localhost';
-CONST DBPSW = '';
+CONST DBPSW = 'root';
 
 
 /**
@@ -64,14 +64,13 @@ if( !defined( 'ABS_PATH' ) ){
 }
 
 if( !defined( 'APP_PATH' ) ){
-    define( 'APP_PATH', ABS_PATH . 'dndcompany\galaxseed'.DS ); // Path with the project name
+    define( 'APP_PATH', ABS_PATH . 'dndcompany'.DS.'galaxseed'.DS ); // Path with the project name
 }
 
 if( !defined( 'CONTROLLER_PATH' ) ){
-    define('CONTROLLER_PATH','dndcompany\galaxseed\controller' .DS); // Absolute path to the root folder
+    define('CONTROLLER_PATH','dndcompany'.DS.'galaxseed'.DS.'controller' .DS); // Absolute path to the root folder
 }
 
-// define ('VIEW_FOLDER', dirname(__FILE__).'/home/' );
 
 
 
