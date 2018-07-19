@@ -1,10 +1,14 @@
+
+<div class="message <?= isset($errorClass) ? $errorClass : '' ?> ">
+    <?= isset($errorMessage) ? $errorMessage : '' ?>
+</div>
+
 <div class="container">
-    <div class="message <?= isset($errorClass) ? $errorClass : '' ?> ">
-        <?= isset($errorMessage) ? $errorMessage : '' ?>
-    </div>
+<!--  Diskor  -->
+    <img src="" alt="">
 
-    <h2>Connection au profil:</h2>
 
+<!--  Connexion/inscription au profil  -->
     <form method="POST" action="?controller=user&action=connexion">
         <div class="form-group">
             <label for="log">Login</label>
@@ -21,6 +25,8 @@
         </div>
     </form>
 
+<!--  Reine  -->
+    <img src="" alt="">
 </div>
 
 

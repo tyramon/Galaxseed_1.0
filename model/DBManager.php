@@ -109,28 +109,35 @@ class DBManager
         $statement->closeCursor();
         return $data;
     }
+
+
     /**
      * @param string $sql
-     * @param array $params
+     * @param array|null $params
+     * @return bool
      */
-    public function makeUpdate(string $sql, array $params = array())
+    public function makeUpdate(string $sql, array $params = null) : bool
     {
-        if (!$params) {
-            $stm = $this->pdo->query($sql);
-            $stm -> execute();
-            if ($stm === false) {
-                $message = "query n'a pas marché";
-                throw new Exception($message);
-            }
-        } else {
+        if ($params !== null)
+        {
             $stm = $this->pdo->prepare($sql);
             foreach($params as $placeholder => $variable)
             {
                 $stm->bindValue($placeholder, $variable);
             }
-            $stm->execute();
+        } else {
+            $stm = $this->pdo->query($sql);
         }
+
+        if ($stm->execute())
+        {
+            return true;
+        }
+
+        return false;
     }
+
+
     /**
      *
      * Makes insert in the database

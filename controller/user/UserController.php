@@ -31,6 +31,10 @@ class UserController extends CoreController
     }
 
 
+    /*
+    *   ROUTES
+    */
+
 
     /**
      * return the default homepage when the user isn't logged in
@@ -59,9 +63,23 @@ class UserController extends CoreController
      */
     public function registerAction()
     {
-        // require('home/register.php');
         return $this->render($this->getController(),'register', []);
     }
+
+
+    /**
+     *  Redirects user to profile update page
+     */
+    public function UpdateProfileAction()
+    {
+        $this->render($this->getController(),'update', []);
+    }
+
+
+
+    /*
+    *    METHODS
+    */
 
 
     /**
@@ -271,17 +289,62 @@ class UserController extends CoreController
     }
 
 
+    /**
+     *
+     */
+    public function makeUpdateProfileAction()
+    {
+        $manager = new UserManager();
 
+        $userId = SRequest::getInstance()->getSession('user')->getId();
+        $postLogin = SRequest::getInstance()->post('login');
+        $postEmail = SRequest::getInstance()->post('email');
 
-// A terminer (ci-dessous)
+        if($postLogin !== SRequest::getInstance()->getSession('user')->getLogin()){
+            if (!$manager->loginIsAvailable($postLogin))
+            {
+                return $this->render($this->getController(),'update', [
+                    'message' => 'Ce pseudo est déjà pris',
+                    'msgClass' => 'invalid-input'
+                ]);
+            }
+        }
+
+        if($postEmail !== SRequest::getInstance()->getSession('user')->getEmail()){
+            if (!$manager->emailIsAvailable($postEmail))
+            {
+                return $this->render($this->getController(),'update', [
+                    'message' => 'Cette addresse mail est déjà prise',
+                    'msgClass' => 'invalid-input'
+                ]);
+            }
+        }
+
+        if ($manager->updateUser($userId))
+        {
+            $message = 'Modification effectuée';
+
+            // resetting the user in the session
+            $updatedUser = $manager->getUserById($userId);
+            $_SESSION['token'] = $updatedUser;
+            $_SESSION['user'] = $updatedUser;
+        }
+
+        return $this->render($this->getController(),'profile', [
+            'errorMessage' => $message,
+            'errorClass' => 'valid-input'
+        ]);
+    }
+
 
     /**
      *
      */
-    public function UpdateAction()
+    public function UpdatePasswordAction()
     {
-        $this->render($this->getController(),'update', []);
+
     }
+
 
     /**
      *

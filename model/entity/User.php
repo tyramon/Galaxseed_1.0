@@ -46,12 +46,12 @@ class User
                $key = str_replace('u_', '', $key);
             }
 
-            if (strpos($key, 'c_') == 0 )
-            {
-                $key = str_replace('c_', '', $key);
-            }
+//            if (strpos($key, 'c_') == 0 )                 // creates conflict between u_id and c_id
+//            {
+//                $key = str_replace('c_', '', $key);
+//            }
 
-            // classic hydration steps
+            // classic hydratation steps
             $method = 'set' . ucfirst($key);
 
             if (method_exists($this, $method)){

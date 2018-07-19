@@ -9,13 +9,16 @@
 $user = $_SESSION['user'];
 
 ?>
+<div class="message <?= isset($errorClass) ? $errorClass : '' ?> ">
+    <?= isset($errorMessage) ? $errorMessage : '' ?>
+</div>
+
+
 
 <div class="container">
-    <div class="message <?= isset($errorClass) ? $errorClass : '' ?> ">
-        <?= isset($errorMessage) ? $errorMessage : '' ?>
-    </div>
-    <div>Utilisateur: <?= ucfirst($user->getFirstName()) . ' ' . ucfirst($user->getLastName()) ?></div>
-    <h2>Choisissez votre personnage</h2>
+    <!--diskor-->
+    <img src="" alt="">
+
 
     <form method="post" action="?controller=FutureGame&action=default">
         <div>
@@ -37,12 +40,15 @@ $user = $_SESSION['user'];
         </div>
 
         <div>
-            <input type="submit" value="Lancer la partie"/>
+            <input class="button" type="submit" value="Lancer la partie"/>
         </div>
     </form>
 
 
-    <a class="button" href="?controller=user&action=update">Modifier mon profil</a>
+    <!--reine sadida-->
+    <img src="" alt="">
+
+    <a class="button" href="?controller=user&action=updateProfile">Modifier mon profil</a>
     <a class="button" href="?controller=user&action=logout">Deconnexion</a>
 
 </div>

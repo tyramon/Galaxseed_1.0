@@ -61,7 +61,7 @@ class UserManager
      * @param $login
      * @return bool
      */
-    public function loginIsAvailable($login) : bool
+    public function loginIsAvailable(string $login) : bool
     {
         $sql = "SELECT `u_login` FROM `user` WHERE `u_login`=:login";
         $params = ['login' => $login];
@@ -76,7 +76,7 @@ class UserManager
      * @param $email
      * @return bool
      */
-    public function emailIsAvailable($email): bool
+    public function emailIsAvailable(string $email): bool
     {
         $sql = "SELECT `u_email` FROM `user` WHERE `u_email`=:email";
         $params = ['email' => $email];
@@ -124,12 +124,36 @@ class UserManager
         }
         return false;
     }
-    public function updateUser() : bool
+
+
+    public function updateUser($id) : bool
     {
-        // Update user info
-        // needs : user id, info to update
-        // return true/false
+        $user = SRequest::getInstance()->post();
+
+        $sql = "UPDATE `user` 
+                SET `u_login`=:login, 
+                    `u_lastname`=:firstname, 
+                    `u_firstname`=:lastname, 
+                    `u_email`=:email 
+                WHERE `u_id`=:id";
+
+        $params = [
+            'login' => $user['login'],
+            'lastname' => $user['lastname'],
+            'firstname' => $user['firstname'],
+            'email' => $user['email'],
+            'id' => $id
+        ];
+
+        if(DBManager::getInstance()->makeUpdate($sql, $params))
+        {
+            return true;
+        }
+
+        return false;
     }
+
+
     public function deleteUser() : bool
     {
         // delete user account
